@@ -1,3 +1,39 @@
+html {
+    height: 100%;
+}
+
 body {
     background-color: #dce2f2;
+    padding: 0;
+    margin: 0;
+    height: calc(100vh - 164px);
+    font-family: 'Barlow', sans-serif;
+    color: #555;
+    border: 1px solid red; /* development style, remove before deploy */
 }
+
+header {
+    border: 1px solid green; /* development style, remove before deploy */
+}
+
+.logo-font {
+    text-transform: uppercase;
+}
+
+.text-black {
+    color: #000 !important;
+}
+
+.border-black {
+    color: #000 !important;
+}
+
+/* @media (min-width: 1200px) {
+    .container {
+        max-width: 80%;
+    }
+
+    .header-container {
+        padding-top: 164px;
+    }
+} */

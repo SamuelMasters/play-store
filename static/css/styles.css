@@ -28,12 +28,45 @@ header {
     color: #000 !important;
 }
 
-/* @media (min-width: 1200px) {
-    .container {
-        max-width: 80%;
-    }
+.platform-selector {
+    height: 25%;
+    position: relative;
+}
 
-    .header-container {
-        padding-top: 164px;
+.platform-selector h2 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: 0;
+    transform: translate(-50%, -50%);
+    -ms-transform: translateY(-50%, -50%);
+}
+
+.platform-link {
+    color: white;
+    text-decoration: none;
+}
+
+#xbox-container {
+    background-color: #107c10;
+}
+
+#ps-container {
+    background-color: #0070cc;
+}
+
+#pc-container {
+    background-color: #e70014;
+}
+
+#board-container {
+    background-color: #720768;
+}
+
+/* Media Queries */
+
+@media (min-width: 768px) {
+    .platform-selector {
+        height: 50%;
     }
-} */
+}

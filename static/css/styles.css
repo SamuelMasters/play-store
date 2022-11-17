@@ -63,6 +63,20 @@ header {
     background-color: #720768;
 }
 
+#template-header {
+    background-color: #BDBDBD;
+    border-bottom: 1px solid black;
+}
+
+#template-footer {
+    background-color: #BDBDBD;
+    border-top: 1px solid black;
+}
+
+#footer-list {
+    margin-bottom: 0;
+}
+
 /* Media Queries */
 
 @media (min-width: 768px) {

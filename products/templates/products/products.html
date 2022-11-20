@@ -8,7 +8,9 @@
     <div class="col-sm-6 col-md-6 col-lg-4 product-card">
         <div class="card card-img-container border-0">
             {% if product.image_main %}
-            <img src="{{ product.image_main.url }}">
+            <a href="{% url 'product_detail' product.id %}">
+                <img src="{{ product.image_main.url }}">
+            </a>
             {% else %}
             <img src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
             {% endif %}

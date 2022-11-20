@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <div class="image-container">
+            {% if product.main_image %}
+            <img src="{{ product.image_main.url }}" alt="{{ product.name }}">
+            {% else %}
+            <img src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
+            {% endif %}
+        </div>
+    </div>
+    <div class="col-12">
+        <p>{{ product.name }}</p>
+        <p>{{ product.price }}</p>
+    </div>
+</div>
+{% endblock %}

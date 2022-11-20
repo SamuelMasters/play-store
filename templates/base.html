@@ -42,7 +42,8 @@
 </head>
 
 <body>
-    <header class="container-fluid fixed-top" id="template-header">
+    <!-- <header class="container-fluid fixed-top" id="template-header"> -->
+    <header class="container-fluid" id="template-header">
         <div class="row pt-lg-2" id="header-nav">
             <div class="col-12 col-lg-4 my-auto py-1 py-lg-0 text-center">
                 <a href="{% url 'home' %}" class="nav-link main-logo-link">
@@ -115,8 +116,10 @@
     <div class="message-container"></div>
     {% endif %}
 
-    {% block content %}
-    {% endblock %}
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+    </div>
 
     <footer class="text-center text-white fixed-bottom" id="template-footer">
         <div class="text-center p-2">

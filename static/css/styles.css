@@ -47,6 +47,15 @@ header {
     text-decoration: none;
 }
 
+.product-card {
+    margin-top: 20px;
+    margin-bottom: 105px;
+}
+
+.card-img-container {
+    
+}
+
 #xbox-container {
     background-color: #107c10;
 }

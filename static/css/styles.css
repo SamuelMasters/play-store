@@ -9,11 +9,10 @@ body {
     height: calc(100vh - 164px);
     font-family: 'Barlow', sans-serif;
     color: #555;
-    border: 1px solid red; /* development style, remove before deploy */
 }
 
-header {
-    border: 1px solid green; /* development style, remove before deploy */
+.dev-border {
+    border: 1px solid black;
 }
 
 .logo-font {
@@ -53,7 +52,9 @@ header {
 }
 
 .card-img-container {
-    
+    overflow: hidden;
+    /* aspect-ratio: 16/9;
+    width: 100%; */
 }
 
 #xbox-container {

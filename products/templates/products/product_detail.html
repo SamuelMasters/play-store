@@ -4,18 +4,37 @@
 
 {% block content %}
 <div class="row">
-    <div class="col-12">
+    <div class="col-12 col-md-8 col-lg-8 dev-border">
         <div class="image-container">
-            {% if product.main_image %}
-            <img src="{{ product.image_main.url }}" alt="{{ product.name }}">
+            {% if product.image_main %}
+            <img class="img-fluid" src="{{ product.image_main.url }}" alt="{{ product.name }} box art">
             {% else %}
-            <img src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
+            <img class="img-fluid" src="{% static '../media/noimage.png' %}" alt="no image placeholder">
             {% endif %}
         </div>
     </div>
-    <div class="col-12">
-        <p>{{ product.name }}</p>
-        <p>{{ product.price }}</p>
+    <div class="col-12 col-md-4 col-lg-4 dev-border">
+        <p>{{ product.description }}</p>
+    </div>
+    <div class="col-12 dev-border">
+        <h2>{{ product.name }}</h2>
+        <h3>£{{ product.price }}</h3>
+        {% if product.category %}
+        <a>
+            <i class="fas fa-tag mr-1"></i>{{ product.category.friendly_name }}
+        </a>
+        {% endif %}
+        {% if product.rating %}
+        <p>Rating: {{ product.rating }}/5</p>
+        {% endif %}
+        <hr>
+        <p>{{ product.description }}</p>
+        <h5>Returns Policy</h5>
+        <p>Please note our returns policy is 30 days starting from the day your order was received. You 
+            are entitled to return the product anytime within the returns window provided the item is 
+            undamaged and you are able to provide proof of purchase. Please view our "Contact Us" page
+            for more details. 
+        </p>
     </div>
 </div>
 {% endblock %}

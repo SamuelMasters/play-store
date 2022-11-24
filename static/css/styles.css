@@ -75,6 +75,11 @@ body {
     color: white !important;
 }
 
+.update-link,
+.remove-item {
+    text-decoration: none;
+}
+
 #xbox-container {
     background-color: #107c10;
 }

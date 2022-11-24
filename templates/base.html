@@ -95,11 +95,11 @@
                     {% endif %}
                     <li class="list-inline-item">
                         <a href="{% url 'view_bag' %}"
-                            class="{% if grand_total %}text-info font-weight-bold{% else %}text-black{% endif %} nav-link">
+                            class="{% if grand_total %}font-weight-bold{% else %}text-black{% endif %} nav-link">
                             <div class="text-center">
                                 <i class="fas fa-shopping-bag fa-sm"></i>
-                                    {% if grand_total %}
-                                    £{{ grand_total|floatformat:2 }}
+                                    {% if total %}
+                                    £{{ total|floatformat:2 }}
                                     {% else %}
                                     £0.00
                                     {% endif %}

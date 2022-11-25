@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, reverse, HttpResponse
+from django.shortcuts import render, redirect, reverse, HttpResponse, get_object_or_404
 from django.contrib import messages
 from products.models import Product
 
@@ -12,13 +12,14 @@ def view_bag(request):
 def add_to_bag(request, item_id):
     """ A view to handle adding items to the bag """
 
-    product = Product.objects.get(pk=item_id)
+    product = get_object_or_404(Product, pk=item_id)
     quantity = int(request.POST.get('quantity'))
     redirect_url = request.POST.get('redirect_url')
     bag = request.session.get('bag', {})
 
     if item_id in list(bag.keys()):
         bag[item_id] += quantity
+        messages.success(request, f'Item quantity for {product.name} has been updated to {bag[item_id]}.')
     else:
         bag[item_id] = quantity
         messages.success(request, f'You added x{quantity} {product.name} to your bag!')
@@ -30,29 +31,34 @@ def add_to_bag(request, item_id):
 def edit_bag(request, item_id):
     """ A view to handle editing item quantities already in the bag """
 
+    product = get_object_or_404(Product, pk=item_id)
     quantity = int(request.POST.get('quantity'))
     bag = request.session.get('bag', {})
 
     if quantity > 0:
         bag[item_id] = quantity
+        messages.success(request, f'Item quantity for {product.name} has been updated to {bag[item_id]}.')
     else:
         bag.pop(item_id)
+        messages.success(request, f'{product.name} was removed from your bag.')
 
     request.session['bag'] = bag
-    print("edit_bag view was called")
     return redirect(reverse('view_bag'))
 
 
-def delete_from_bag(request, item_id):
+def remove_from_bag(request, item_id):
     """ A view to handle removing items from the bag """
 
     try:
+        product = get_object_or_404(Product, pk=item_id)
         bag = request.session.get('bag', {})
         bag.pop(item_id)
+        messages.success(request, f'{product.name} was removed from your bag.')
 
         request.session['bag'] = bag
-        print("delete_from_bag view was called and returned status 200")
+        print("remove_from_bag view was called and returned status 200")
         return HttpResponse(status=200)
     except Exception as error:
-        print("delete_from_bag view returned error 500")
+        print("remove_from_bag view returned error 500")
+        messages.error(request, f'Error removing item from bag: {e}')
         return HttpResponse(status=500)

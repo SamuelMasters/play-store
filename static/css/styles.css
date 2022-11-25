@@ -76,8 +76,9 @@ body {
 }
 
 .update-link,
-.remove-item {
+.remove-link {
     text-decoration: none;
+    cursor: pointer;
 }
 
 #xbox-container {

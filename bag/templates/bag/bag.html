@@ -96,7 +96,7 @@
                                         <i class="fas fa-chevron-left"></i>
                                     </span>
                                     <span class="text-uppercase">Browse Products</span>
-                                    <a href="" class="btn btn-black rounded-0 btn-lg">
+                                    <a href="{% url 'checkout' %}" class="btn btn-black rounded-0 btn-lg">
                                         <span class="text-uppercase">Secure Checkout</span>
                                         <span class="icon">
                                             <i class="fas fa-lock"></i>
@@ -134,23 +134,7 @@
         form[0].requestSubmit();
     });
 
-    // Removes the item from the bag and reloads the page
-    // $('.remove-link').click(function (e) {
-    //     var csrfToken = "{{ csrf_token }}";
-    //     var itemId = $(this).attr('id')
-    //     var url = `/bag/delete/${itemId}/`;
-    //     var data = {
-    //         'csrfmiddlewaretoken': csrfToken
-    //     };
-
-    //     console.log(".remove-link has triggered");
-    //     $.post(url, data)
-    //         .done(function () {
-    //             location.reload();
-    //         });
-        
-    // });
-
+    // Handles removing items at bag summary
     $('.remove-item').click(function(e) {
         var csrfToken = "{{ csrf_token }}";
         var itemId = $(this).attr('id').split('remove_')[1];

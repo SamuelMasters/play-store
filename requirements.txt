@@ -1,7 +1,9 @@
 asgiref==3.5.2
+crispy-bootstrap5==0.7
 Django==3.2
 django-allauth==0.51.0
 django-countries==7.4.2
+django-crispy-forms==1.14.0
 django-phonenumber-field==7.0.0
 oauthlib==3.2.2
 phonenumberslite==8.13.0

@@ -1,0 +1,1 @@
+web: gunicorn play_store.wsgi.application

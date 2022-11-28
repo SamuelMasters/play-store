@@ -6,7 +6,7 @@ from .models import Product, Category
 
 
 def display_products(request):
-    """ """
+    """ A view to show users a list of products with optional filters """
     products = Product.objects.all()
     query = None
     platform = None
@@ -29,13 +29,14 @@ def display_products(request):
     context = {
         'products': products,
         'search_term': query,
+        'platform': platform,
     }
 
     return render(request, 'products/products.html', context)
 
 
 def product_detail(request, product_id):
-    """ """
+    """ A view to show users the specific detail page for a given product """
     product = get_object_or_404(Product, pk=product_id)
 
     context = {

@@ -1,3 +1,5 @@
+# signals.py taken from Boutique Ado as the existing file was ideal
+# for the requirements of this project
 from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
 

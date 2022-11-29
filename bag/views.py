@@ -1,6 +1,9 @@
-from django.shortcuts import render, redirect, reverse, HttpResponse, get_object_or_404
+from django.shortcuts import render, redirect, reverse, HttpResponse, \
+    get_object_or_404
 from django.contrib import messages
 from products.models import Product
+
+# Views adapated and customised for use from Boutique Ado walkthough project
 
 
 def view_bag(request):
@@ -19,10 +22,12 @@ def add_to_bag(request, item_id):
 
     if item_id in list(bag.keys()):
         bag[item_id] += quantity
-        messages.success(request, f'Item quantity for {product.name} has been updated to {bag[item_id]}.')
+        messages.success(request, f'Item quantity for {product.name} has been\
+             updated to {bag[item_id]}.')
     else:
         bag[item_id] = quantity
-        messages.success(request, f'You added x{quantity} {product.name} to your bag!')
+        messages.success(request, f'You added x{quantity} {product.name} to \
+            your bag!')
 
     request.session['bag'] = bag
     return redirect(redirect_url)
@@ -37,7 +42,8 @@ def edit_bag(request, item_id):
 
     if quantity > 0:
         bag[item_id] = quantity
-        messages.success(request, f'Item quantity for {product.name} has been updated to {bag[item_id]}.')
+        messages.success(request, f'Item quantity for {product.name} has been\
+             updated to {bag[item_id]}.')
     else:
         bag.pop(item_id)
         messages.success(request, f'{product.name} was removed from your bag.')

@@ -4,6 +4,9 @@ from django.db.models import Q
 
 from .models import Product, Category
 
+# Below view has been adapted from Boutique Ado's equivalent, in particular the
+# 'q' logic which enables the search bar to make queries
+
 
 def display_products(request):
     """ A view to show users a list of products with optional filters """

@@ -2,6 +2,8 @@ var stripePublicKey = $('#id_stripe_public_key').text().slice(1, -1);
 var clientSecret = $('#id_client_secret').text().slice(1, -1);
 var stripe = Stripe(stripePublicKey);
 var elements = stripe.elements();
+
+/* Style copied across from Stripe documentation */
 var style = {
     base: {
         color: '#000',
@@ -23,6 +25,7 @@ var card = elements.create('card', {
 
 card.mount('#card-element');
 
+/* Below lines adapted from Boutique Ado project */
 // Handle real time validation errors on #card-element
 card.addEventListener('change', function (e) {
     var errorDiv = document.getElementById('card-errors');

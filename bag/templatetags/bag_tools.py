@@ -1,3 +1,6 @@
+# bag_tools.py was taken from Boutique Ado for use in this project,
+# as the functionality was required without changes for calculating
+# subtotals at this project's checkout stage
 from django import template
 
 

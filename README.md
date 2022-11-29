@@ -1,5 +1,7 @@
 # Play.com - eCommerce Store
 
+**IMPORTANT**: *This README and the play-store project as a whole is a work-in-progress and is not completed until this notice 
+has been removed.*
 
 **Developer: Samuel Masters**
 
@@ -56,7 +58,11 @@ This project, "play-store", is an eCommerce web application where users can brow
 
 ## User Stories
 
-User stories were created at project start and were arranged planned out using Lucidchart...
+User stories were created at project start and were arranged planned out using Lucidchart.
+
+<details><summary>User Story Planning</summary>
+<img src="docs/user_stories.jpeg">
+</details>
 
 ### Users
 
@@ -78,7 +84,7 @@ The colour scheme uses ...
 
 ### Fonts
 
-Google Fonts was used to provide the font for the website. [PLACEHOLDER_TEXT](#) was chosen as the universal font for the page, and was chosen for...
+Google Fonts was used to provide the font for the website. [PLACEHOLDER_TEXT](#) was chosen for...
 
 ### Structure
 
@@ -97,15 +103,27 @@ The bottom of each page features PLACEHOLDER_TEXT.
 
 - Data for this project is stored is an ElephantSQL database.
 
-The following models were setup for this project:
 
-##### User Model
-- Django-allauth provided a user model that was used in this project. The model was not customised.
+
+Models were planned in advance using Lucidchart. 
+
+<details><summary>Model Planning</summary>
+<img src="docs/models.jpeg">
+</details>
+
+The following models were setup for this project:
 
 ##### Product Model
 - This model contains information about each individual post created on the site.
 - It contains the following fields:
-  - PLACEHOLDER_TEXT
+  - category (a foreign key relating to the Category model)
+  - name
+  - price
+  - description
+  - platform
+  - image_main
+  - image_2
+  - image_3
 
 ##### Category Model
 - This model contains information about different categories to which posts can be assigned.
@@ -114,30 +132,48 @@ The following models were setup for this project:
   - friendly_name
 
 ##### Order Model
-- This model contains information about comments which can be left on posts by users.
+- This model contains information about orders placed on the application by users.
 - It contains the following fields:
-  - post
-  - name
-  - body
-  - created_on
-  - approved
+  - order_number
+  - date
+  - full_name
+  - email
+  - phone_number
+  - street_address1
+  - street_address2
+  - county
+  - postcode
+  - country
+  - order_total
 
 ### Wireframes
 
-<details><summary>PC / Laptop or Desktop</summary>
-<img src="">
+<details><summary>Home</summary>
+<img src="docs/home.png">
 </details>
-<details><summary>Tablet</summary>
-<img src="">
+<details><summary>Browse</summary>
+<img src="docs/browse.png">
 </details>
-<details><summary>Mobile</summary>
-<img src="">
+<details><summary>Product Detail</summary>
+<img src="docs/product_detail.png">
+</details>
+<details><summary>Bag</summary>
+<img src="docs/basket.png">
+</details>
+<details><summary>Checkout</summary>
+<img src="docs/checkout.png">
+</details>
+<details><summary>Contact Us</summary>
+<img src="docs/contact_us.png">
+</details>
+<details><summary>Profile</summary>
+<img src="docs/profile.png">
 </details>
 <details><summary>Model Planning</summary>
-<img src="">
+<img src="docs/models.jpeg">
 </details>
 <details><summary>User Stories</summary>
-<img src="">
+<img src="docs/user_stories.jpeg">
 </details>
 
 ## Technologies Used
@@ -173,38 +209,49 @@ The following models were setup for this project:
 ### Home
 - PLACEHOLDER_TEXT
 
-<details>
-
-![Home](docs/readme/home.png)
+<details><summary>Model Planning</summary>
+<img src="docs/models.jpeg">
 </details>
 
-### Post Detail
+### Home
 - PLACEHOLDER_TEXT
 
-### Authentication (Login, Logout, Register)
+### Browse
+- PLACEHOLDER_TEXT
+
+### Product Detail
+- PLACEHOLDER_TEXT
+
+### Bag
+- PLACEHOLDER_TEXT
+
+### Checkout
+- PLACEHOLDER_TEXT
+
+### Checkout Success
 - PLACEHOLDER_TEXT
 
 <details>
 
-![Edit](docs/readme/edit.png)
+![Edit]()
 </details>
 
 #### Sign-in
 <details>
 
-![Sign-in](docs/readme/sign-in.png)
+![Sign-in]()
 </details>
 
 #### Sign-out
 <details>
 
-![Sign-out](docs/readme/sign-out.png)
+![Sign-out]()
 </details>
 
 #### Sign-up
 <details>
 
-![Sign-up](docs/readme/sign-up.png)
+![Sign-up]()
 </details>
 
 ### Footer
@@ -212,7 +259,7 @@ The following models were setup for this project:
 
 <details>
 
-![Footer](docs/readme/footer.png)
+![Footer]()
 </details>
 
 ### Feedback messages
@@ -220,7 +267,7 @@ The following models were setup for this project:
 
 <details>
 
-![Messages](docs/readme/message.png)
+![Messages]()
 </details>
 
 ##### Back to [top](#table-of-contents)
@@ -229,47 +276,63 @@ The following models were setup for this project:
 
 ## Validation
 
-The [W3C Validator](https://validator.w3.org/nu/) was used for validation of the HTML files in this project.
+The [W3C Validator](https://validator.w3.org/nu/) PLACEHOLDER_TEXT
 <details><summary>Home</summary>
-<img src="docs/validators/index.html validator result.png">
-</details>
-
-<details><summary>Home (Filtered)</summary>
-<img src="docs/validators/index (filtered).png">
-</details>
-
-<details><summary>Post Detail</summary>
-<img src="docs/validators/post_detail.html validator result.png">
+<img src="">
 </details>
 
 <details><summary>Sign-in</summary>
-<img src="docs/validators/login.html validator result.png">
+<img src="">
 </details>
 
 <details><summary>Sign-out</summary>
-<img src="docs/validators/logout.html validator result.png">
+<img src="">
 </details>
 
 <details><summary>Sign-up</summary>
-<img src="docs/validators/signup.html validator result.png">
+<img src="">
+</details>
+
+<details><summary>Browse</summary>
+<img src="">
+</details>
+
+<details><summary>Browse (Filtered)</summary>
+<img src="">
+</details>
+
+<details><summary>Product Detail</summary>
+<img src="">
+</details>
+
+<details><summary>Bag</summary>
+<img src="">
+</details>
+
+<details><summary>Checkout</summary>
+<img src="">
+</details>
+
+<details><summary>Checkout Success</summary>
+<img src="">
 </details>
 
 ### CSS Validation
-The [Jigsaw CSS validator](https://jigsaw.w3.org/css-validator/) was used for validation of the CSS files in this project.
+The [Jigsaw CSS validator](https://jigsaw.w3.org/css-validator/) PLACEHOLDER_TEXT
 
 <details>
-<img src="docs/validators/style.css validator result.png">
+<img src="">
 </details>
 
 ### JavaScript Validation
-[JSHint](https://jshint.com/) was used for validation of the JS files in this project. The validation was done via raw input, meaning the contents of script.js were copied into the validator.
+[JSHint](https://jshint.com/) PLACEHOLDER_TEXT
 
 <details>
 <img src="">
 </details>
 
 ### PEP8 Validation
-[PEP8 Online](http://pep8online.com/) was used for validation of the Python files in this project.
+[PEP8 Online](http://pep8online.com/) PLACEHOLDER_TEXT
 
 <details><summary>settings.py</summary>
 <img src="">
@@ -283,7 +346,7 @@ The [Jigsaw CSS validator](https://jigsaw.w3.org/css-validator/) was used for va
 
 ## Testing
 
-The project was tested throughout development, manually. Automated tests were not utilised for this project.
+PLACEHOLDER_TEXT
 
 ##### Back to [top](#table-of-contents)
 
@@ -315,7 +378,7 @@ This application has been deployed from GitHub to Heroku by following the steps:
 10. In settings.py, check that Debug = False.
 11. Under the "ALLOWED_HOSTS" variable in settings.py, make sure that 'localhost' and the deployed Heroku root url are included. 
 12. Go to Settings in your Heroku and set the environment variables in the Config Vars
-    ![Heroku config vars](docs/readme/config-vars.png)
+    ![Heroku config vars]()
 13. Remove DISABLE_COLLECTSTATIC from Heroku settings.
 14. Push the code to Heroku using the command "git push heroku main" from your CLI.
 
@@ -335,6 +398,9 @@ Final steps:
 ---
 
 ## Credits
+
+- Some parts of this project includes code originally shown in Chris Zielinski's ['Boutique Ado'](https://github.com/ckz8780/boutique_ado_v1/tree/50af34fe6cacbb53181e58860f2dc21fd313950e) walkthrough project. Where relevant, changes have been made to the original code to fit the purposes of this project. However in some cases, no changes have been required in the code to achieve the required functionality. These blocks have been commented against to indicate that they have been carried across and adapated for use in this project. 
+
 
 - [TEST](https://google.com/) for ...
 

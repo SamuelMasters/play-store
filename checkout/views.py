@@ -9,10 +9,10 @@ from bag.contexts import bag_contents
 
 import stripe
 
-
+# Below views adapated for use here from Boutique Ado project
 def checkout(request):
     """
-    A view for submitting payments to Stripe, and creating 
+    A view for submitting payments to Stripe, and creating
     new instances of Order when the order is successfully placed.
     """
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
@@ -47,7 +47,8 @@ def checkout(request):
                     order_line_item.save()
                 except Product.DoesNotExist:
                     messages.error(request, (
-                        "One of the products in your bag wasn't found in our database. "
+                        "One of the products in your bag wasn't found in our \
+                            database. "
                         "Please contact us for assistance.")
                     )
                     order.delete()

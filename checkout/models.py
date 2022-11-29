@@ -14,11 +14,19 @@ class Order(models.Model):
     date = models.DateTimeField(auto_now_add=True)
     full_name = models.CharField(max_length=60, null=False, blank=False)
     email = models.EmailField(max_length=254, null=False, blank=False)
+    """
+    Custom phone_number field from \
+        https://django-phonenumber-field.readthedocs.io/en/latest/
+    """
     phone_number = PhoneNumberField(blank=True)
     street_address1 = models.CharField(max_length=90, null=False, blank=False)
     street_address2 = models.CharField(max_length=90, null=True, blank=True)
+    """ Custom country field from \
+        https://pypi.org/project/django-countries/
+    """
     county = models.CharField(max_length=90, null=True, blank=True)
     postcode = models.CharField(max_length=25, null=False, blank=False)
+
     country = CountryField()
     order_total = models.DecimalField(max_digits=10, decimal_places=2, null=False, default=0)
 

@@ -3,6 +3,7 @@ from django.contrib import messages
 from django.db.models import Q
 
 from .models import Product, Category
+from .forms import ProductForm
 
 # Below view has been adapted from Boutique Ado's equivalent, in particular the
 # 'q' logic which enables the search bar to make queries
@@ -47,3 +48,14 @@ def product_detail(request, product_id):
     }
 
     return render(request, 'products/product_detail.html', context)
+
+
+def add_product(request):
+    """ """
+    form = ProductForm()
+    template = 'products/add_product.html'
+    context = {
+        'form': form,
+    }
+
+    return render(request, template, context)

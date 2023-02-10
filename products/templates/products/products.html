@@ -13,11 +13,17 @@
                     <img src="{{ product.image_main.url }}">
                 </a>
                 {% else %}
-                <img src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
+                <a href="{% url 'product_detail' product.id %}">
+                    <img src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
+                </a>
                 {% endif %}
             </div>
             <div class="card-body pb-0">
-                <p class="mb-0"><strong>{{ product.name }}</strong></p>
+                <p class="mb-0">
+                    <a href="{% url 'product_detail' product.id %}">
+                        <strong>{{ product.name }}</strong>
+                    </a>
+                </p>
             </div>
             <div class="card-footer pt-0 border-0 text-left">
                 <div class="row">

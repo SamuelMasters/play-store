@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.db.models import Q
+import time
 
 from .models import Product, Category
 from .forms import ProductForm
@@ -51,8 +52,18 @@ def product_detail(request, product_id):
 
 
 def add_product(request):
-    """ """
-    form = ProductForm()
+    """ Handles the creation of new products to the database """
+    if request.method == 'POST':
+        form = ProductForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Successfully added product!')
+            return redirect(reverse('add_product'))
+        else:
+            messages.error(request, 'Failed to add product, please check the product details and try again.')
+    else:
+        form = ProductForm()
+
     template = 'products/add_product.html'
     context = {
         'form': form,

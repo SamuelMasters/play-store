@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
+from django.contrib.auth.decorators import user_passes_test
 from django.db.models import Q
+
 import time
 
 from .models import Product, Category
@@ -51,16 +53,18 @@ def product_detail(request, product_id):
     return render(request, 'products/product_detail.html', context)
 
 
+@user_passes_test(lambda u: u.is_superuser)
 def add_product(request):
     """ Handles the creation of new products to the database """
     if request.method == 'POST':
         form = ProductForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            product = form.save()
             messages.success(request, 'Successfully added product!')
-            return redirect(reverse('add_product'))
+            return redirect(reverse('product_detail', args=[product.id]))
         else:
-            messages.error(request, 'Failed to add product, please check the product details and try again.')
+            messages.error(request, 'Failed to add product, please check the \
+                                        product details and try again.')
     else:
         form = ProductForm()
 
@@ -72,8 +76,9 @@ def add_product(request):
     return render(request, template, context)
 
 
+@user_passes_test(lambda u: u.is_superuser)
 def edit_product(request, product_id):
-    """ """
+    """ Handles the changing of existing product data """
     product = get_object_or_404(Product, pk=product_id)
 
     if request.method == 'POST':
@@ -95,3 +100,12 @@ def edit_product(request, product_id):
     }
 
     return render(request, template, context)
+
+
+@user_passes_test(lambda u: u.is_superuser)
+def delete_product(request, product_id):
+    """ Handles the deletion of products from the database """
+    product = get_object_or_404(Product, pk=product_id)
+    product.delete()
+    messages.success(request, 'Product successfully deleted.')
+    return redirect(reverse('products'))

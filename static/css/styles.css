@@ -11,6 +11,10 @@ body {
     color: #555;
 }
 
+header {
+    margin-bottom: 10px;
+}
+
 .dev-border {
     border: 1px solid black;
 }

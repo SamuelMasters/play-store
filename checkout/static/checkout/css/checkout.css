@@ -1,6 +1,6 @@
 .fieldset-label {
-    position: relative;
-    right: .5rem;
+  position: relative;
+  right: .5rem;
 }
 
 .order-confirmation-wrapper {
@@ -10,8 +10,23 @@
 
 #payment-form .form-control,
 #card-element {
-    color: #000;
-    border: 1px solid #000;
+  color: #000;
+  border: 1px solid #000;
+}
+
+#div_id_country {
+  color: #000;
+  border: 1px solid #000;
+}
+
+select,
+select option {
+  color: #000000;
+}
+
+select:invalid,
+select option[value=""] {
+  color: #AAB7C4 !important;
 }
 
 /* Stripe Styling*/
@@ -39,5 +54,5 @@
 }
 
 .stripe-style-input::placeholder {
-    color: #aab7c4;
+  color: #aab7c4;
 }

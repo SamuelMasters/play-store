@@ -80,7 +80,7 @@
                     </li>
                     {% if request.user.is_authenticated %}
                     <li class="list-inline-item">
-                        <a href="#" class="text-black nav-link">My Profile</a>
+                        <a href="{% url 'user_profile' %}" class="text-black nav-link">My Profile</a>
                     </li>
                     {% endif %}
                     {% if request.user.is_authenticated %}

@@ -131,6 +131,25 @@ header {
     height: 2px;
 }
 
+/* Allauth */
+
+.allauth-form-inner-content p {
+    margin-top: 1.5rem;
+    color: #6C757D;
+}
+
+.allauth-form-inner-content label:not([for='id_remember']) {
+    display: none;
+}
+
+.allauth-form-inner-content button {
+    border: 1px solid black;
+}
+
+.allauth-form-inner-content button:hover {
+    background-color: #BDBDBD;
+}
+
 /* Media Queries */
 
 @media (min-width: 768px) {

@@ -82,6 +82,18 @@
                     {{ order_form.street_address1 | as_crispy_field }}
                     {{ order_form.street_address2 | as_crispy_field }}
                     {{ order_form.county | as_crispy_field }}
+
+                    <div class="form-check form-check-inline float-right mr-0">
+                        {% if user.is_authenticated %}
+                        <label for="id-save-info" class="form-check-label">Save my address information</label>
+                        <input type="checkbox" class="form-check-input ml-2 mr-0" id="id-save-info" name="save-info" checked>
+                        {% else %}
+                        <label for="id-save-info" class="form-check-label">
+                            <a href="{% url 'account_signup' %}" class="text-info">Signup</a> or
+                            <a href="{% url 'account_login' %}" class="text-info">login</a> tp save this information for future purchases.
+                        </label>
+                        {% endif %}
+                    </div>
                 </fieldset>
 
                 <fieldset class="px-3">

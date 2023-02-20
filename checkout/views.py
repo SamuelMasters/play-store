@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404, HttpResponse
+from django.views.decorators.http import require_POST
 from django.contrib import messages
 from django.conf import settings
 
@@ -10,6 +11,7 @@ from user_profiles.models import UserProfile
 from bag.contexts import bag_contents
 
 import stripe
+import json
 
 
 # Below views adapated for use here from Boutique Ado project
@@ -20,7 +22,6 @@ def checkout(request):
     """
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
-
 
     if request.method == 'POST':
         bag = request.session.get('bag', {})
@@ -129,3 +130,21 @@ def checkout_success(request, order_number):
     }
 
     return render(request, template, context)
+
+
+@require_POST
+def cache_checkout_data(request):
+    """ Adds checkout metadata to payment intent """
+    try:
+        pid = request.POST.get('client_secret').split('_secret')[0]
+        stripe.api_key = settings.STRIPE_SECRET_KEY
+        stripe.PaymentIntent.modify(pid, metadata={
+            'username': request.user,
+            'save_info': request.POST.get('save_info'),
+            'bag': json.dumps(request.session.get('bag', {})),
+        })
+        return HttpResponse(status=200)
+    except Exception as exception:
+        messages.error(request, 'Unfortunately your pamyent cannot be \
+            processed at the moment. Please try again later.')
+        return HttpResponse(content=exception, status=400)

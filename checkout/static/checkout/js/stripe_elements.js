@@ -1,3 +1,11 @@
+/*
+    Payment flow adapted from:
+    https://stripe.com/docs/payments/accept-a-payment
+    
+    CSS copied from:
+    https://stripe.com/docs/stripe-js
+*/
+
 var stripePublicKey = $('#id_stripe_public_key').text().slice(1, -1);
 var clientSecret = $('#id_client_secret').text().slice(1, -1);
 var stripe = Stripe(stripePublicKey);
@@ -51,9 +59,35 @@ form.addEventListener('submit', function (ev) {
         'disabled': true
     });
     $('#submit-button').attr('disabled', true);
+
+    var saveInfo = Boolean($('#id-save-info').attr('checked'));
+    var csrfToken = $('input[name="csrfmiddlewaretoken"]').val();
+
     stripe.confirmCardPayment(clientSecret, {
         payment_method: {
             card: card,
+            billing_details: {
+                name: $.trim(form.full_name.value),
+                email: $.trim(form.email.value),
+                phone_number: $.trim(form.phone_number.value),
+                address:{
+                    street_address1: $.trim(form.street_address1.value),
+                    street_address2: $.trim(form.street_address2.value),
+                    county: $.trim(form.county.value),
+                    country: $.trim(form.country.value),
+                }
+            },
+            shipping: {
+                name: $.trim(form.full_name.value),
+                phone_number: $.trim(form.phone_number.value),
+                address:{
+                    street_address1: $.trim(form.street_address1.value),
+                    street_address2: $.trim(form.street_address2.value),
+                    county: $.trim(form.county.value),
+                    postcode: $.trim(form.postcode.value),
+                    country: $.trim(form.country.value),
+                }
+            }
         }
     }).then(function (result) {
         if (result.error) {

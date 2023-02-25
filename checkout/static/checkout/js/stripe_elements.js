@@ -58,54 +58,74 @@ form.addEventListener('submit', function (ev) {
     card.update({
         'disabled': true
     });
+    // 
     $('#submit-button').attr('disabled', true);
-
+    console.log("Submit button disabled...") // debug
     var saveInfo = Boolean($('#id-save-info').attr('checked'));
     var csrfToken = $('input[name="csrfmiddlewaretoken"]').val();
+    var postData = {
+        'csrfmiddlewaretoken': csrfToken,
+        'client_secret': clientSecret,
+        'save_info': saveInfo,
+    }
 
-    stripe.confirmCardPayment(clientSecret, {
-        payment_method: {
-            card: card,
-            billing_details: {
-                name: $.trim(form.full_name.value),
-                email: $.trim(form.email.value),
-                phone_number: $.trim(form.phone_number.value),
-                address:{
-                    street_address1: $.trim(form.street_address1.value),
-                    street_address2: $.trim(form.street_address2.value),
-                    county: $.trim(form.county.value),
-                    country: $.trim(form.country.value),
-                }
+    var url = '/checkout/cache_checkout_data/';
+    $.post(url, postData).done(function () {
+
+        console.log("DEBUG: about to attempt stripe.confirmCardPayment...") // debug
+        stripe.confirmCardPayment(clientSecret, {
+            payment_method: {
+                card: card,
+                billing_details: {
+                    name: $.trim(form.full_name.value),
+                    email: $.trim(form.email.value),
+                    // phone: $.trim(form.phone_number.value),
+                    address: {
+                        line1: $.trim(form.street_address1.value),
+                        line2: $.trim(form.street_address2.value),
+                        state: $.trim(form.county.value),
+                        country: $.trim(form.country.value),
+                    },
+                },
             },
             shipping: {
                 name: $.trim(form.full_name.value),
-                phone_number: $.trim(form.phone_number.value),
-                address:{
-                    street_address1: $.trim(form.street_address1.value),
-                    street_address2: $.trim(form.street_address2.value),
-                    county: $.trim(form.county.value),
-                    postcode: $.trim(form.postcode.value),
+                // phone: $.trim(form.phone_number.value),
+                address: {
+                    line1: $.trim(form.street_address1.value),
+                    line2: $.trim(form.street_address2.value),
+                    state: $.trim(form.county.value),
+                    postal_code: $.trim(form.postcode.value),
                     country: $.trim(form.country.value),
                 }
+            },
+        }).then(function(result) {
+            console.log("DEBUG: .then after .confirmCardPayment triggered...") // debug
+            if (result.error) {
+                console.log("DEBUG: An error occured on .confirmCardPayment") // debug
+                console.log(result.error) // debug
+                var errorDiv = document.getElementById('card-errors');
+                var html = `
+                    <span class="icon" role="alert">
+                    <i class="fas fa-times"></i>
+                    </span>
+                    <span>${result.error.message}</span>`;
+                $(errorDiv).html(html);
+                card.update({
+                    'disabled': false
+                });
+                console.log("Submit button re-enabled...") // debug
+                $('#submit-button').attr('disabled', false);
+            } else {
+                console.log("DEBUG: no result.error found...") // debug
+                if (result.paymentIntent.status === 'succeeded') {
+                    form.submit();
+                }
             }
-        }
-    }).then(function (result) {
-        if (result.error) {
-            var errorDiv = document.getElementById('card-errors');
-            var html = `
-                <span class="icon" role="alert">
-                <i class="fas fa-times"></i>
-                </span>
-                <span>${result.error.message}</span>`;
-            $(errorDiv).html(html);
-            card.update({
-                'disabled': false
-            });
-            $('#submit-button').attr('disabled', false);
-        } else {
-            if (result.paymentIntent.status === 'succeeded') {
-                form.submit();
-            }
-        }
-    });
+        });
+    }).fail(function() {
+        console.log("DEBUG: .fail triggered...") // debug
+        location.reload();
+    })
+
 });

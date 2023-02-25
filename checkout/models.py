@@ -21,7 +21,7 @@ class Order(models.Model):
     Custom phone_number field from \
         https://django-phonenumber-field.readthedocs.io/en/latest/
     """
-    phone_number = PhoneNumberField(blank=True)
+    phone_number = PhoneNumberField(null=True, blank=True)
     street_address1 = models.CharField(max_length=90, null=False, blank=False)
     street_address2 = models.CharField(max_length=90, null=True, blank=True)
     """ Custom country field from \

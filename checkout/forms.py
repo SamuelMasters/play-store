@@ -10,7 +10,7 @@ class OrderForm(forms.ModelForm):
                   'postcode', 'country', 'county')
 
     def __init__(self, *args, **kwargs):
-        """ """
+        """ Setup the order form and add assign placeholders, classes """
         super().__init__(*args, **kwargs)
         placeholders = {
                 'full_name': 'Full Name',

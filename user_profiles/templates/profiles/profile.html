@@ -43,7 +43,7 @@
                         <tr>
                             <td>
                                 <a href="{% url 'order_history' order.order_number %}" title="{{ order.order_number }}">
-                                    {{ order.order_number|truncatechars:6 }}
+                                    {{ order.order_number|truncatechars:12 }}
                                 </a>
                             </td>
                             <td>{{ order.date }}</td>
@@ -56,6 +56,7 @@
                                     {% endfor %}
                                 </ul>
                             </td>
+                            <td>£{{ order.order_total }}</td>
                         </tr>
                         {% endfor %}
                     </tbody>
@@ -63,11 +64,12 @@
             </div>
         </div>
     </div>
+</div>
 
-    {% endblock %}
+{% endblock %}
 
-    {% block postloadjs %}
-    {{ block.super }}
-    <script src="{% static 'js/country_script.js' %}">
-    </script>
-    {% endblock %}
+{% block postloadjs %}
+{{ block.super }}
+<script src="{% static 'js/country_script.js' %}">
+</script>
+{% endblock %}

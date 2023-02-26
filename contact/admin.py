@@ -1,3 +1,17 @@
 from django.contrib import admin
+from .models import ContactQuery
 
-# Register your models here.
+
+class QueryAdmin(admin.ModelAdmin):
+    model = ContactQuery
+    list_display = (
+        'first_name',
+        'last_name',
+        'email',
+        'date',
+    )
+
+    ordering = ('date',)
+
+
+admin.site.register(ContactQuery, QueryAdmin)

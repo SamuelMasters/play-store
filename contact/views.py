@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, reverse
+from django.contrib import messages
 
 from .models import ContactQuery
 from .forms import ContactForm
@@ -20,7 +21,9 @@ def contact(request):
         query_form = ContactForm(form_data)
         if query_form.is_valid():
             query_form.save()
-            return redirect(reverse('home'))  # need a success message here
+            messages.success(request, 'Your message has been sent! We will try\
+                                       to get back to you within 24 hours.')
+            return redirect(reverse('home'))
         else:
             messages.error(request, 'There was a problem with your query.\
                 Please check the query form and try again.')

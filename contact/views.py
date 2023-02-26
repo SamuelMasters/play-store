@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, reverse
 
 from .models import ContactQuery
 from .forms import ContactForm
@@ -11,6 +11,7 @@ def contact(request):
     """
     if request.method == 'POST':
         form_data = {
+            'subject': request.POST['subject'],
             'first_name': request.POST['first_name'],
             'last_name': request.POST['last_name'],
             'email': request.POST['email'],
@@ -19,7 +20,7 @@ def contact(request):
         query_form = ContactForm(form_data)
         if query_form.is_valid():
             query_form.save()
-            return redirect(reverse('home'))
+            return redirect(reverse('home'))  # need a success message here
         else:
             messages.error(request, 'There was a problem with your query.\
                 Please check the query form and try again.')

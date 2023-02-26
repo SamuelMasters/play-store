@@ -5,6 +5,7 @@ from .models import ContactQuery
 class QueryAdmin(admin.ModelAdmin):
     model = ContactQuery
     list_display = (
+        'subject',
         'first_name',
         'last_name',
         'email',

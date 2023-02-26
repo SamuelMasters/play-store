@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'checkout',
     'user_profiles',
     'contact',
+    'newsletter',
 ]
 
 MIDDLEWARE = [
@@ -217,3 +218,7 @@ STRIPE_CURRENCY = 'gbp'
 STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY', '')
 STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY', '')
 STRIPE_WH_SECRET = os.getenv('STRIPE_WH_SECRET', '')
+
+# SendGrid Settings
+FROM_EMAIL = 'samuelmastersdev@gmail.com'
+SENDGRID_API_KEY = os.environ.get('SENDGRID_API_KEY')

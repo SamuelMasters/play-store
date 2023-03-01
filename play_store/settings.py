@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     'user_profiles',
     'contact',
     'newsletter',
+    'reviews',
 ]
 
 MIDDLEWARE = [

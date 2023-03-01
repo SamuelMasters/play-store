@@ -14,24 +14,40 @@ from .forms import SubscriberForm
 # Helper
 def generate_confirmation_key():
     """
-    Returns a 10-digit random number. 
+    Returns a 10-digit random number.
     """
     return "%0.10d" % random.randint(0, 9999999999)
 
 
 def handle_newsletter_signup(request):
     """
-
+    Handles form submissions for newsletter signups, and sends emails
+    to provided email addresses with confirmation keys. 
+    https://app.sendgrid.com/guide/integrate/langs/python
     """
     if request.method == 'POST':
         new_confirmation_key = generate_confirmation_key()
+        print(f"DEBUG: new_confirmation_key: {new_confirmation_key}")  # debug
         form_data = {
             'email': request.POST['email'],
             'confirmation_key': new_confirmation_key,
         }
-        new_subscriber = SubscriberForm(form_data)
+        print(f"DEBUG: form_data: {form_data}")  # debug
+        new_subscriber = SubscriberForm(form_data)  # debug
+        new_subscriber.confirmation_key = new_confirmation_key
+        print(f"DEBUG: new_subscriber confirmation_key: {new_subscriber.confirmation_key}")  # debug
+        print(f"DEBUG: new_subscriber object: {new_subscriber}")  # debug
         if new_subscriber.is_valid():
             new_subscriber.save()
+            # attempting to update new_subscriber object with confirmation key #
+
+            # new_subscriber_email = new_subscriber['email']['value']
+            # print(f"DEBUG: new_subscriber_email: {new_subscriber_email}")
+            # new_subscriber = Subscriber.objects.get(email=new_subscriber_email)
+            # new_subscriber.confirmation_key = new_confirmation_key
+            # print(new_subscriber.confirmation_key)
+
+            # end debug #
             message = Mail(
                 from_email=settings.FROM_EMAIL,
                 to_emails=form_data['email'],
@@ -64,6 +80,30 @@ def handle_newsletter_signup(request):
             }
             return render(request, template, context)
     else:
+        template = 'newsletter/newsletter.html'
+        context = {
+            'form': SubscriberForm,
+        }
+        return render(request, template, context)
+
+
+def confirm_subscription(request):
+    """
+    Confirms consent of newsletter subscribers to receive communication.
+    """
+    subscriber = Subscriber.objects.get(email=request.GET['email'])
+    if subscriber.confirmation_key == request.GET['confirmation_key']:
+        subscriber.consent = True
+        subscriber.save()
+        messages.success(request, 'Thank you for confirming your email!')
+        template = 'newsletter/newsletter.html'
+        context = {
+            'form': SubscriberForm,
+        }
+        return render(request, template, context)
+    else:
+        messages.error(request, 'There was a problem confirming your email.\
+                                 Please try again later.')
         template = 'newsletter/newsletter.html'
         context = {
             'form': SubscriberForm,

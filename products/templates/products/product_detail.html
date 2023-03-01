@@ -104,6 +104,18 @@
             </div>
             {% endfor %}
         </div>
+
+        <div class="new-review-wrapper">
+            {% if request.user.is_authenticated %}
+            <form action="{% url 'product_detail' product.id %}" method="POST" class="mt-3">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <button class="btn btn-black rounded-0 text-uppercase float-right">Publish</button>
+            </form>
+            {% else %}
+            <p>Please sign in if you wish to leave a review.</p>
+            {% endif %}
+        </div>
         <!-- end of reviews -->
 
         <h3>Returns Policy</h3>

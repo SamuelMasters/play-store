@@ -67,9 +67,11 @@
             <i class="fas fa-tag mr-1"></i>{{ product.category.friendly_name }}
         </a>
         {% endif %}
+
         {% if product.rating %}
-        <p>Rating: {{ product.rating }}/5</p>
+        <p>average product rating here</p>
         {% endif %}
+
         {% if request.user.is_superuser %}
         <small class="ml-3">
             <a href="{% url 'edit_product' product.id %}">Edit</a>
@@ -77,8 +79,35 @@
         </small>
         {% endif %}
         <hr>
-        <p>{{ product.description }}</p>
-        <h5>Returns Policy</h5>
+
+        <div class="description-wrapper">
+            <p>{{ product.description }}</p>
+        </div>
+
+        <!-- Product Reviews -->
+        <div class="review-wrapper">
+            <h3>Reviews</h3>
+            {% for review in product.reviews.all %}
+            <div class="review-block">
+                <p>
+                    <strong>"{{ review.review_title }}"</strong> | <strong>Rating: </strong>{{ review.rating }} / 5 |
+                    <strong>Date: </strong>{{ review.date|date:"y-m-d" }}
+                </p>
+                <p>
+                    {{ review.review_body }}
+                    <em> - {{ review.reviewer }}</em>
+                </p>
+                {% empty %}
+                <p>
+                    <strong>No reviews yet...</strong>
+                </p>
+            </div>
+            {% endfor %}
+        </div>
+        <!-- end of reviews -->
+
+        <h3>Returns Policy</h3>
+
         <p>Please note our returns policy is 30 days starting from the day your order was received. You
             are entitled to return the product anytime within the returns window provided the item is
             undamaged and you are able to provide proof of purchase. Please view our "Contact Us" page

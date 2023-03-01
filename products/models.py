@@ -32,8 +32,6 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=6, decimal_places=2)
     description = models.TextField()
     platform = models.CharField(max_length=254, choices=PLATFORM_CHOICES)
-    rating = models.DecimalField(max_digits=6, decimal_places=2, null=True,
-                                 blank=True)
     image_main = models.ImageField(null=True, blank=True)
     image_2 = models.ImageField(null=True, blank=True)
     image_3 = models.ImageField(null=True, blank=True)

@@ -7,6 +7,8 @@ import time
 
 from .models import Product, Category
 from .forms import ProductForm
+from reviews.forms import ReviewForm
+from reviews.models import ProductReview
 
 # Below view has been adapted from Boutique Ado's equivalent, in particular the
 # 'q' logic which enables the search bar to make queries
@@ -46,10 +48,40 @@ def product_detail(request, product_id):
     """ A view to show users the specific detail page for a given product """
     product = get_object_or_404(Product, pk=product_id)
 
+    if request.method == 'POST' and request.user.is_authenticated:
+        form_data = {
+            'product': product_id,
+            'review_title': request.POST['review_title'],
+            'review_body': request.POST['review_body'],
+            'rating': request.POST['rating'],
+            'reviewer': request.user,
+        }
+
+        print(f"DEBUG: form_data: {form_data}")  # debug
+        review = ReviewForm(form_data)
+        print(f"DEBUG: review object: {review}")  # debug
+
+        if review.is_valid():
+            print("DEBUG: review.is_valid passed")  # debug
+            review.save()
+            messages.success(request, 'Thanks for leaving your feedback!\
+                                        Your review has been saved.')
+            form = ReviewForm()
+            context = {
+                'product': product,
+                'form': form,
+            }
+            return render(request, 'products/product_detail.html', context)
+        else:
+            messages.error(request, 'It looks like there was a problem\
+                                     with your review. Please try again\
+                                     later.')
+
+    form = ReviewForm()
     context = {
         'product': product,
+        'form': form,
     }
-
     return render(request, 'products/product_detail.html', context)
 
 

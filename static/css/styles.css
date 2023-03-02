@@ -9,6 +9,7 @@ body {
     height: calc(100vh - 164px);
     font-family: 'Barlow', sans-serif;
     color: #555;
+    overflow-x: hidden;
 }
 
 header {
@@ -106,7 +107,7 @@ header {
 }
 
 #template-header {
-    background-color: #BDBDBD;
+    background-color: #9DD6A8;
     border-bottom: 1px solid black;
 }
 

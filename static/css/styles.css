@@ -85,6 +85,10 @@ header {
     cursor: pointer;
 }
 
+#front-page-hero-img {
+    border-radius: 20%;
+}
+
 #xbox-container {
     background-color: #107c10;
 }

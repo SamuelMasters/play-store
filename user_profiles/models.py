@@ -10,11 +10,14 @@ class UserProfile(models.Model):
     """ A model to represent a user's saved information """
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     default_phone_number = PhoneNumberField(null=True, blank=True)
-    default_street_address1 = models.CharField(max_length=90, null=True, blank=True)
-    default_street_address2 = models.CharField(max_length=90, null=True, blank=True)
+    default_street_address1 = models.CharField(max_length=90, null=True,
+                                               blank=True)
+    default_street_address2 = models.CharField(max_length=90, null=True,
+                                               blank=True)
     default_postcode = models.CharField(max_length=25, null=True, blank=True)
     default_county = models.CharField(max_length=90, null=True, blank=True)
-    default_country = CountryField(blank_label='Country', null=True, blank=True)
+    default_country = CountryField(blank_label='Country', null=True,
+                                   blank=True)
 
     def __str__(self):
         return self.user.username

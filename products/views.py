@@ -32,7 +32,8 @@ def display_products(request):
                     Please check your query and try again.')
                 return redirect(reverse('products'))
 
-            queries = Q(name__icontains=query) | Q(description__icontains=query)
+            queries = Q(name__icontains=query) \
+                | Q(description__icontains=query)
             products = products.filter(queries)
 
     context = {
@@ -60,14 +61,13 @@ def product_detail(request, product_id):
         rating = request.POST.get('rating', 3)
         review_title = request.POST.get('review_title')
         review_body = request.POST.get('review_body')
-        print(f"DEBUG: form_data: {form_data}")  # debug
-        # review = ProductReview.objects.create(form_data)
-        review = ProductReview.objects.create(product=product, reviewer=request.user, rating=rating, review_title=review_title, review_body=review_body)
-        print(f"DEBUG: review object: {review}")  # debug
+        review = ProductReview.objects.create(product=product,
+                                              reviewer=request.user,
+                                              rating=rating,
+                                              review_title=review_title,
+                                              review_body=review_body)
 
-        # if review.is_valid():
         try:
-            print("DEBUG: review.is_valid passed")  # debug
             review.save()
             messages.success(request, 'Thanks for leaving your feedback!\
                                         Your review has been saved.')
@@ -77,7 +77,6 @@ def product_detail(request, product_id):
                 'form': form,
             }
             return render(request, 'products/product_detail.html', context)
-        # else:
         except Exception as e:
             messages.error(request, 'It looks like there was a problem\
                                      with your review. Please try again\
@@ -127,7 +126,8 @@ def edit_product(request, product_id):
             messages.success(request, 'Your changes have been saved.')
             return redirect(reverse('product_detail', args=[product.id]))
         else:
-            messages.error(request, 'Failed to update product - please check the update form for errors.')
+            messages.error(request, 'Failed to update product - please check\
+                           the update form for errors.')
     else:
         form = ProductForm(instance=product)
         messages.info(request, f"You're editing {product.name}.")

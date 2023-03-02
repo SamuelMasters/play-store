@@ -57,11 +57,16 @@ def product_detail(request, product_id):
             'reviewer': request.user,
         }
 
+        rating = request.POST.get('rating', 3)
+        review_title = request.POST.get('review_title')
+        review_body = request.POST.get('review_body')
         print(f"DEBUG: form_data: {form_data}")  # debug
-        review = ReviewForm(form_data)
+        # review = ProductReview.objects.create(form_data)
+        review = ProductReview.objects.create(product=product, reviewer=request.user, rating=rating, review_title=review_title, review_body=review_body)
         print(f"DEBUG: review object: {review}")  # debug
 
-        if review.is_valid():
+        # if review.is_valid():
+        try:
             print("DEBUG: review.is_valid passed")  # debug
             review.save()
             messages.success(request, 'Thanks for leaving your feedback!\
@@ -72,10 +77,12 @@ def product_detail(request, product_id):
                 'form': form,
             }
             return render(request, 'products/product_detail.html', context)
-        else:
+        # else:
+        except Exception as e:
             messages.error(request, 'It looks like there was a problem\
                                      with your review. Please try again\
                                      later.')
+            print(f"DEBUG: An exception occurred: {e}")
 
     form = ReviewForm()
     context = {

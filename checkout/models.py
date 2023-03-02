@@ -13,7 +13,9 @@ from user_profiles.models import UserProfile
 class Order(models.Model):
     """ A model to represent an instance of a customer order """
     order_number = models.CharField(max_length=32, null=False, editable=False)
-    user_profile = models.ForeignKey(UserProfile, on_delete=models.SET_NULL, null=True, blank=True, related_name='orders')
+    user_profile = models.ForeignKey(UserProfile, on_delete=models.SET_NULL,
+                                     null=True, blank=True,
+                                     related_name='orders')
     date = models.DateTimeField(auto_now_add=True)
     full_name = models.CharField(max_length=60, null=False, blank=False)
     email = models.EmailField(max_length=254, null=False, blank=False)
@@ -31,10 +33,13 @@ class Order(models.Model):
     postcode = models.CharField(max_length=25, null=False, blank=False)
 
     country = CountryField()
-    order_total = models.DecimalField(max_digits=10, decimal_places=2, null=False, default=0)
+    order_total = models.DecimalField(max_digits=10, decimal_places=2,
+                                      null=False, default=0)
 
     def _assign_order_number(self):
-        """ Generates the order number to associate with each order instance """
+        """
+        Generates the order number to associate with each order instance
+        """
         return uuid.uuid4().hex.upper()
 
     def save(self, *args, **kwargs):
@@ -50,7 +55,9 @@ class Order(models.Model):
         """
         Updates the order_total when a new line item is added
         """
-        self.order_total = self.lineitems.aggregate(Sum('lineitem_total'))['lineitem_total__sum']
+        self.order_total = \
+            self.lineitems.\
+            aggregate(Sum('lineitem_total'))['lineitem_total__sum']
         self.save()
 
     def __str__(self):
@@ -58,10 +65,14 @@ class Order(models.Model):
 
 
 class OrderLineItem(models.Model):
-    order = models.ForeignKey(Order, on_delete=models.CASCADE, null=False, blank=False, related_name='lineitems')
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, null=False, blank=False)
+    order = models.ForeignKey(Order, on_delete=models.CASCADE, null=False,
+                              blank=False, related_name='lineitems')
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, null=False,
+                                blank=False)
     quantity = models.IntegerField(null=False, blank=False, default=0)
-    lineitem_total = models.DecimalField(max_digits=6, decimal_places=2, null=False, blank=False, editable=False)
+    lineitem_total = models.DecimalField(max_digits=6, decimal_places=2,
+                                         null=False, blank=False,
+                                         editable=False)
 
     def save(self, *args, **kwargs):
         """

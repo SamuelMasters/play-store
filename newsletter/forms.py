@@ -8,7 +8,7 @@ class SubscriberForm(forms.ModelForm):
         fields = ('email',)
 
     def __init__(self, *args, **kwargs):
-        """ """
+        """ Setup new subscriber form and assign placeholders """
         super().__init__(*args, **kwargs)
         placeholder = 'Enter your email address here.'
 

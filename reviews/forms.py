@@ -3,11 +3,14 @@ from .models import ProductReview
 
 
 class ReviewForm(forms.ModelForm):
-    rating = forms.CharField(label='Rating', widget=forms.TextInput(attrs={'min':1,'max': '5','type': 'number'}))
+    rating = forms.CharField(label='Rating', widget=forms.
+                             TextInput(attrs={'min': '1', 'max': '5',
+                                       'type': 'number'}))
 
     class Meta:
         model = ProductReview
-        fields = ('review_title', 'review_body', 'rating', 'product', 'reviewer')
+        fields = ('review_title', 'review_body', 'rating', 'product',
+                  'reviewer')
 
     def __init__(self, *args, **kwargs):
         """ """

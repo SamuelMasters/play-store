@@ -10,7 +10,6 @@ def delete_review(request, review_id):
     if review.reviewer == request.user:
         review.delete()
         messages.success(request, 'Your review has been deleted.')
-        print("A review was deleted!")  # debug
         return redirect(reverse('home'))
     else:
         messages.error(request, "You cannot delete the reviews of other\

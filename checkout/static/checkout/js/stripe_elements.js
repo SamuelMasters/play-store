@@ -60,7 +60,6 @@ form.addEventListener('submit', function (ev) {
     });
     // 
     $('#submit-button').attr('disabled', true);
-    console.log("Submit button disabled...") // debug
     var saveInfo = Boolean($('#id-save-info').attr('checked'));
     var csrfToken = $('input[name="csrfmiddlewaretoken"]').val();
     var postData = {
@@ -71,15 +70,12 @@ form.addEventListener('submit', function (ev) {
 
     var url = '/checkout/cache_checkout_data/';
     $.post(url, postData).done(function () {
-
-        console.log("DEBUG: about to attempt stripe.confirmCardPayment...") // debug
         stripe.confirmCardPayment(clientSecret, {
             payment_method: {
                 card: card,
                 billing_details: {
                     name: $.trim(form.full_name.value),
                     email: $.trim(form.email.value),
-                    // phone: $.trim(form.phone_number.value),
                     address: {
                         line1: $.trim(form.street_address1.value),
                         line2: $.trim(form.street_address2.value),
@@ -90,7 +86,6 @@ form.addEventListener('submit', function (ev) {
             },
             shipping: {
                 name: $.trim(form.full_name.value),
-                // phone: $.trim(form.phone_number.value),
                 address: {
                     line1: $.trim(form.street_address1.value),
                     line2: $.trim(form.street_address2.value),
@@ -100,10 +95,7 @@ form.addEventListener('submit', function (ev) {
                 }
             },
         }).then(function(result) {
-            console.log("DEBUG: .then after .confirmCardPayment triggered...") // debug
             if (result.error) {
-                console.log("DEBUG: An error occured on .confirmCardPayment") // debug
-                console.log(result.error) // debug
                 var errorDiv = document.getElementById('card-errors');
                 var html = `
                     <span class="icon" role="alert">
@@ -114,17 +106,14 @@ form.addEventListener('submit', function (ev) {
                 card.update({
                     'disabled': false
                 });
-                console.log("Submit button re-enabled...") // debug
                 $('#submit-button').attr('disabled', false);
             } else {
-                console.log("DEBUG: no result.error found...") // debug
                 if (result.paymentIntent.status === 'succeeded') {
                     form.submit();
                 }
             }
         });
     }).fail(function() {
-        console.log("DEBUG: .fail triggered...") // debug
         location.reload();
     })
 

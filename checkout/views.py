@@ -1,4 +1,5 @@
-from django.shortcuts import render, redirect, reverse, get_object_or_404, HttpResponse
+from django.shortcuts import render, redirect, reverse, get_object_or_404,\
+    HttpResponse
 from django.views.decorators.http import require_POST
 from django.contrib import messages
 from django.conf import settings
@@ -30,7 +31,6 @@ def checkout(request):
         form_data = {
             'full_name': request.POST['full_name'],
             'email': request.POST['email'],
-            # 'phone_number': request.POST['phone_number'],
             'country': request.POST['country'],
             'postcode': request.POST['postcode'],
             'street_address1': request.POST['street_address1'],
@@ -40,9 +40,7 @@ def checkout(request):
 
         order_form = OrderForm(form_data)
         if order_form.is_valid():
-            print("DEBUG: order_form recognised as valid...")  # debug
             order = order_form.save()
-            print(f"DEBUG: order initialised: {order}")  # debug
             for item_id, item_data in bag.items():
                 try:
                     product = Product.objects.get(id=item_id)
@@ -62,37 +60,27 @@ def checkout(request):
                     return redirect(reverse('view_bag'))
 
             request.session['save_info'] = 'save-info' in request.POST
-            return redirect(reverse('checkout_success', args=[order.order_number]))
+            return redirect(reverse('checkout_success',
+                            args=[order.order_number]))
         else:
             messages.error(request, 'There was a problem with your order form.\
                 Please check your information.')
-            # CRITICAL BUG: if form validation fails, then intent does not get created
-            # for local scope, leading to crash - issue with phone number failing
-            # need to account for failure of form variables
-            print(order_form.errors.as_data()) # debug line, remove before deploy
 
     # occurs on GET request, such as load of checkout.html template
     else:
-        print("DEBUG: checkout view called as GET request")  # debug line, remove before deploy
         bag = request.session.get('bag', {})
-        print(f"DEBUG: bag retrieved: {bag}")  # debug
         if not bag:
             messages.error(request, "Your bag is empty.")
             return redirect(reverse('products'))
 
         current_bag = bag_contents(request)
-        print(f"DEBUG: current_bag: {current_bag}")  # debug
         total = current_bag['total']
-        print(f"DEBUG: total: {total}")  # debug
         stripe_total = round(total * 100)
-        print(f"DEBUG: stripe_total: {stripe_total}")  # debug
         stripe.api_key = stripe_secret_key
-        print(f"DEBUG: stripe.api_key: {stripe.api_key}")  # debug
         intent = stripe.PaymentIntent.create(
             amount=stripe_total,
             currency=settings.STRIPE_CURRENCY,
         )
-        print(f"DEBUG: intent: {intent}")  # debug
         order_form = OrderForm()
 
     if not stripe_secret_key:
@@ -100,15 +88,11 @@ def checkout(request):
                                 check environment.')
 
     template = 'checkout/checkout.html'
-    print("Assembling context...")  # debug
     context = {
         'order_form': order_form,
         'stripe_public_key': stripe_public_key,
         'client_secret': intent.client_secret,
-        # can the client_secret be passed here from a hidden input?
-        # 'client_secret': client_secret,
     }
-    print("Context assembled...")  # debug
 
     return render(request, template, context)
 
@@ -126,7 +110,6 @@ def checkout_success(request, order_number):
 
         if save_info:
             profile_data = {
-                # 'default_phone_number': order.phone_number,
                 'default_street_address1': order.street_address1,
                 'default_street_address2': order.street_address2,
                 'default_postcode': order.postcode,

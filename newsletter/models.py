@@ -12,4 +12,5 @@ class Subscriber(models.Model):
     signup_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.email + " (" + ("not " if not self.consent else "") + "confirmed)"
+        return self.email + " (" + ("not " if not self.consent else "")\
+             + "confirmed)"

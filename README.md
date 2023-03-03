@@ -1,11 +1,10 @@
 # Play.com - eCommerce Store
 
-**IMPORTANT**: *This README and the play-store project as a whole is a work-in-progress and is not completed until this notice 
-has been removed.*
-
 **Developer: Samuel Masters**
 
 💻 [Visit live website](https://play-store-samuel-masters.herokuapp.com/)
+
+![Mockup image]()
 
 ## Table of Contents
   - [About](#about)

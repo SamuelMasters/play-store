@@ -159,19 +159,16 @@
             {% endif %}
         </div>
         <!-- end of reviews -->
+        <div id="returns-policy">
+            <h3>Returns Policy</h3>
 
-        <h3>Returns Policy</h3>
-
-        <p>Please note our returns policy is 30 days starting from the day your order was received. You
-            are entitled to return the product anytime within the returns window provided the item is
-            undamaged and you are able to provide proof of purchase. Please view our "Contact Us" page
-            for more details.
-        </p>
+            <p>Please note our returns policy is 30 days starting from the day your order was received.</p>
+        </div>
     </div>
-</div>
-{% endblock %}
+    {% endblock %}
+    <br><br>
 
-{% block postloadjs %}
-{{ block.super }}
-{% include 'products/includes/quantity_input_script.html' %}
-{% endblock %}
+    {% block postloadjs %}
+    {{ block.super }}
+    {% include 'products/includes/quantity_input_script.html' %}
+    {% endblock %}

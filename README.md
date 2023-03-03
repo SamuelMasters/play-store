@@ -4,7 +4,7 @@
 
 💻 [Visit live website](https://play-store-samuel-masters.herokuapp.com/)
 
-![Mockup image]()
+![Mockup image](docs/readme//am-i-responsive-preview.jpg)
 
 ## Table of Contents
   - [About](#about)
@@ -65,16 +65,16 @@ This project, "play-store", is an eCommerce web application where users can brow
 User stories were created at project start and were arranged planned out using Lucidchart. They were then copied over into Github Issues and setup on a project board with MoSCoW prioritisation labels applied. 
 
 <details><summary>User Story Planning</summary>
-<img src="docs/play-store-user-stories.jpeg">
+<img src="docs/wireframes/play-store-user-stories.jpeg">
 </details>
 
 <details><summary>GitHub Issues</summary>
-<img src="docs/github-issues-user-stories.jpg">
+<img src="docs/readme/github-issues-user-stories.jpg">
 </details>
 
 ### Users / Shoppers
 
-1.	As a site user, I can create my own user account so that I can save my delivery information and order history and view them on site. (**Must Have**)
+1. As a site user, I can create my own user account so that I can save my delivery information and order history and view them on site. (**Must Have**)
 2. As a site user, I can quickly login and logout so that I can access and protect my personal account information. (**Must Have**)
 3. As a site user, I can easily set a new password or recover an existing one so that I can regain access to my account if I forget my password. (**Could Have**)
 4. As a site user, I can edit and update my saved delivery details so that I can keep my address information up to date. (**Could Have**)
@@ -136,7 +136,7 @@ The bottom of each page features a simple footer with multiple links.
 Data for this project is stored is an ElephantSQL postgres database. Data models were planned in advance using Lucidchart. Final implementation of the application's models differ from the initial plans shown here, however the process of planning which models might be required and how they might be comprised was helpful in the initial setup stages.
 
 <details><summary>Model Planning</summary>
-<img src="docs/play-store-model-planning.jpeg">
+<img src="docs/readme/play-store-model-planning.jpeg">
 </details>
 
 The following models were setup for this project:
@@ -225,31 +225,31 @@ The following models were setup for this project:
 ### Wireframes
 
 <details><summary>Home</summary>
-<img src="docs/home.png">
+<img src="">
 </details>
 <details><summary>Browse</summary>
-<img src="docs/browse.png">
+<img src="">
 </details>
 <details><summary>Product Detail</summary>
-<img src="docs/product_detail.png">
+<img src="">
 </details>
 <details><summary>Bag</summary>
-<img src="docs/basket.png">
+<img src="">
 </details>
 <details><summary>Checkout</summary>
-<img src="docs/checkout.png">
+<img src="">
 </details>
 <details><summary>Contact Us</summary>
-<img src="docs/contact_us.png">
+<img src="">
 </details>
 <details><summary>Profile</summary>
-<img src="docs/profile.png">
+<img src="">
 </details>
 <details><summary>Model Planning</summary>
-<img src="docs/models.jpeg">
+<img src="">
 </details>
 <details><summary>User Stories</summary>
-<img src="docs/user_stories.jpeg">
+<img src="">
 </details>
 
 ## Technologies Used
@@ -265,7 +265,19 @@ The following models were setup for this project:
 
 ### Libraries & Tools
 
-- [PLACEHOLDER_TEXT]() was used to PLACEHOLDER_TEXT
+- [Am I Responsive]() was used to create the example image at the top of this README.
+- [Balsamiq](https://balsamiq.com/) was used to setup visual wireframes for the website's pages.
+- [Lucidchart]() was used to create wireframes of the project's anticipated data models and user stories.
+- [Bootstrap](https://getbootstrap.com/) was used as a framework for the project.
+- [Django-allauth](https://django-allauth.readthedocs.io/en/latest/index.html) was used to add simple user authentication to the website.
+- [GitHub](https://github.com/) was used for version control and development hosting.
+- [Google Fonts](https://fonts.google.com/) was used for the project's fonts.
+- [Heroku](https://id.heroku.com/login) was used to deploy the live production version of the site.
+- [Elephant SQL](https://www.elephantsql.com/) was used to provide a postgres database to store the deployed site's data.
+- [Stripe](https://stripe.com/gb) was used to setup and handle payments made through the website.
+- [Amazon AWS](https://aws.amazon.com/) was used to store the deployed project's static files and media.
+- []() was used to .
+
 
 ##### Back to [top](#table-of-contents)
 
@@ -274,38 +286,97 @@ The following models were setup for this project:
 ## Features
 
 ### Navigation Bar
-- Consistent across all pages, the navigation bar is setup in the base.html template, which all other templates extend.
+- The navigation bar was setup in the base.html template, which all other pages extend from. This means that the header is the same across all pages.  
 - Contains links to Home, and:
   - If the user is authenticated:
-      - PLACEHOLDER_TEXT
+      - My Profile, leads the user to their profile page
+      - Logout, leads the user to an authentication page where they can sign out
+      - Add Product (visible to authenicated users but only allows superusers), leads superusers to a page where they can create new products from a form
+      - Shopping bag icon, leads the user to a bag summary page which then itself leads to checkout
   - If the user is not authenticated:
-      - PLACEHOLDER_TEXT
+      - Login, leads the user to an authentication page where they can sign in
+      - Signup, leads the user to an authentication page where they can create a new account
+      - Shopping bag icon, leads the user to a bag summary page which then itself leads to checkout
 
 
 ### Home
-- PLACEHOLDER_TEXT
+- This is the front-page of the site. It contains links to filtered product lists which the user can browse. It was originally intended to have a front-page image with a carousel, however this could not be implemented before submission. 
+- Clicking the platform selectors bring the user to a page with a list of products pertaining to the platform they selected. 
 
-<details><summary>Model Planning</summary>
-<img src="docs/models.jpeg">
+<details><summary>Example</summary>
+<img src="docs/readme/home.jpg">
 </details>
 
-### Home
-- PLACEHOLDER_TEXT
+### Products
+- This page displays a list of products according to the platform selector that the user clicked on from the home page. 
+- It was intended to have a 'tile'-like design, by looping through the list of products and creating a 'tile' for each one with details such as the main image, name of the product and price. 
 
-### Browse
-- PLACEHOLDER_TEXT
+<details><summary>Example</summary>
+<img src="docs/readme/products.jpg">
+</details>
 
 ### Product Detail
-- PLACEHOLDER_TEXT
+- This page displays a specific product in more detail. It includes space for some marketing copy to describe the product, as well as a space for user reviews further down and a brief section about the returns policy.
+
+<details><summary>Example</summary>
+<img src="docs/readme/products.jpg">
+</details>
 
 ### Bag
 - PLACEHOLDER_TEXT
 
+<details><summary>Example</summary>
+<img src="docs/readme/products.jpg">
+</details>
+
 ### Checkout
 - PLACEHOLDER_TEXT
 
+<details><summary>Example</summary>
+<img src="docs/readme/products.jpg">
+</details>
+
 ### Checkout Success
 - PLACEHOLDER_TEXT
+
+<details><summary>Example</summary>
+<img src="docs/readme/products.jpg">
+</details>
+
+### User Profile
+- PLACEHOLDER_TEXT
+
+<details><summary>Example</summary>
+<img src="docs/readme/products.jpg">
+</details>
+
+### Add Product
+- PLACEHOLDER_TEXT
+
+<details><summary>Example</summary>
+<img src="docs/readme/products.jpg">
+</details>
+
+### Contact Us
+- PLACEHOLDER_TEXT
+
+<details><summary>Example</summary>
+<img src="docs/readme/products.jpg">
+</details>
+
+### Newsletter
+- PLACEHOLDER_TEXT
+
+<details><summary>Example</summary>
+<img src="docs/readme/products.jpg">
+</details>
+
+### Privacy Policy
+- PLACEHOLDER_TEXT
+
+<details><summary>Example</summary>
+<img src="docs/readme/products.jpg">
+</details>
 
 <details>
 

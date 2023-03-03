@@ -10,7 +10,7 @@
             <div class="card card-img-container border-0 ratio ratio-1x1">
                 {% if product.image_main %}
                 <a href="{% url 'product_detail' product.id %}">
-                    <img src="{{ product.image_main.url }}">
+                    <img src="{{ product.image_main.url }}" alt="{{ product.name }}">
                 </a>
                 {% else %}
                 <a href="{% url 'product_detail' product.id %}">

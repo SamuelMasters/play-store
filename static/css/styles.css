@@ -86,6 +86,10 @@ header {
     cursor: pointer;
 }
 
+#returns-policy {
+    margin-bottom: 2%;
+}
+
 #front-page-hero-img {
     border-radius: 20%;
 }

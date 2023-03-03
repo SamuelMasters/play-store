@@ -65,6 +65,7 @@ class Order(models.Model):
 
 
 class OrderLineItem(models.Model):
+    """ A model to represent a single item within an order instance """
     order = models.ForeignKey(Order, on_delete=models.CASCADE, null=False,
                               blank=False, related_name='lineitems')
     product = models.ForeignKey(Product, on_delete=models.CASCADE, null=False,

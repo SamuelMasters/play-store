@@ -141,6 +141,14 @@ Data for this project is stored is an ElephantSQL postgres database. Data models
 
 The following models were setup for this project:
 
+#### Facebook Mockup
+
+A Facebook business page was mocked up for this project. 
+
+<details><summary>Mockup</summary>
+<img src="docs/readme/play-store-facebook-mockup.jpg">
+</details>
+
 ##### Order Model
 - This model contains information about an individual order placed successfully on site.
 - It contains the following fields:
@@ -323,98 +331,93 @@ The following models were setup for this project:
 </details>
 
 ### Bag
-- PLACEHOLDER_TEXT
+- This page shows a user what the contents of their virtual bag are. 
 
 <details><summary>Example</summary>
-<img src="docs/readme/products.jpg">
+<img src="docs/readme/bag.jpg">
 </details>
 
 ### Checkout
-- PLACEHOLDER_TEXT
+- This page allows a user to fill out a form to proceed through the checkout process and confirm their purchase. 
 
 <details><summary>Example</summary>
-<img src="docs/readme/products.jpg">
+<img src="docs/readme/checkout.jpg">
 </details>
 
 ### Checkout Success
-- PLACEHOLDER_TEXT
+- This page shows a user their order confirmation after successfully checking out.
 
 <details><summary>Example</summary>
-<img src="docs/readme/products.jpg">
+<img src="docs/readme/checkout-success.jpg">
 </details>
 
 ### User Profile
-- PLACEHOLDER_TEXT
+- This page shows an authenticated user their saved delivery details and order history.
 
 <details><summary>Example</summary>
-<img src="docs/readme/products.jpg">
+<img src="docs/readme/user-profile.jpg">
 </details>
 
 ### Add Product
-- PLACEHOLDER_TEXT
+- This page shows an authenticated superuser a form which they can fill in to add new products to the database.
 
 <details><summary>Example</summary>
-<img src="docs/readme/products.jpg">
+<img src="docs/readme/add-product.jpg">
 </details>
 
 ### Contact Us
-- PLACEHOLDER_TEXT
+- This page shows a user a form which they can fill in to submit a query to the site admin.
 
 <details><summary>Example</summary>
-<img src="docs/readme/products.jpg">
+<img src="docs/readme/contact.jpg">
 </details>
 
 ### Newsletter
-- PLACEHOLDER_TEXT
+- This page shows an input field where a user can enter an email address they wish to add to the site's mailing list. Submitting an email address here sends a real email to the provided address.
 
 <details><summary>Example</summary>
-<img src="docs/readme/products.jpg">
+<img src="docs/readme/newsletter.jpg">
 </details>
 
 ### Privacy Policy
-- PLACEHOLDER_TEXT
+- This page shows the site's privacy policy.
 
 <details><summary>Example</summary>
-<img src="docs/readme/products.jpg">
+<img src="docs/readme/privacy.jpg">
 </details>
 
-<details>
+### Sign-in
+- This page shows a user a form where they can enter their details to sign-in, if they have already made an account.
 
-![Edit]()
+<details><summary>Example</summary>
+<img src="docs/readme/sign-in.jpg">
 </details>
 
-#### Sign-in
-<details>
+### Sign-out
+- This page shows an authenticated user where they can signout of their account.
 
-![Sign-in]()
+<details><summary>Example</summary>
+<img src="docs/readme/sign-out.jpg">
 </details>
 
-#### Sign-out
-<details>
+### Sign-up
+- This page shows a user where they can create a new account.
 
-![Sign-out]()
-</details>
-
-#### Sign-up
-<details>
-
-![Sign-up]()
-</details>
-
-### Footer
-- Basic footer, setup in the base.html template, and appears at the bottom of each page. 
-
-<details>
-
-![Footer]()
+<details><summary>Example</summary>
+<img src="docs/readme/sign-up.jpg">
 </details>
 
 ### Feedback messages
-- The user receives a pop-up message when...
+- The user receives a pop-up message when performing various actions. The pop-up message disappears after around 5 seconds, and can be manually dismissed by the user before then. 
 
 <details>
+<summary>Success Message</summary>
+<img src="docs/readme/message-success.jpg">
+</details>
 
-![Messages]()
+<details>
+<summary>Info Message</summary>
+<img src="docs/readme/message-info.jpg">
 </details>
 
 ##### Back to [top](#table-of-contents)
@@ -423,69 +426,81 @@ The following models were setup for this project:
 
 ## Validation
 
-The [W3C Validator](https://validator.w3.org/nu/) PLACEHOLDER_TEXT
+The [W3C Validator](https://validator.w3.org/nu/) was used to validate the HTML files used in this project.
 <details><summary>Home</summary>
-<img src="">
+<img src="docs/validators/home-validation.jpg">
 </details>
 
-<details><summary>Sign-in</summary>
-<img src="">
+<details><summary>Products</summary>
+<img src="docs/validators/products-validation.jpg">
 </details>
 
-<details><summary>Sign-out</summary>
-<img src="">
-</details>
-
-<details><summary>Sign-up</summary>
-<img src="">
-</details>
-
-<details><summary>Browse</summary>
-<img src="">
-</details>
-
-<details><summary>Browse (Filtered)</summary>
-<img src="">
-</details>
-
-<details><summary>Product Detail</summary>
-<img src="">
+<details><summary>Product Details</summary>
+<img src="docs/validators/product-detail-validation.jpg">
 </details>
 
 <details><summary>Bag</summary>
-<img src="">
+<img src="docs/validators/bag-validation.jpg">
 </details>
 
 <details><summary>Checkout</summary>
-<img src="">
+<img src="docs/validators/checkout-validation.jpg">
 </details>
 
 <details><summary>Checkout Success</summary>
-<img src="">
+<img src="docs/validators/checkout-success-validation.jpg">
+</details>
+
+<details><summary>User Profile</summary>
+<img src="docs/validators/user-profile-validation.jpg">
+</details>
+There was an unresolved issue whilst validating the user profile page. It is believed to be caused by an authentication issue, as only authenticated users can render this page, and the validator had no way of passing as an authenticated user.
+
+<details><summary>Add Product</summary>
+<img src="docs/validators/add-product-validation.jpg">
+</details>
+
+<details><summary>Contact Us</summary>
+<img src="docs/validators/contact-validation.jpg">
+</details>
+
+<details><summary>Newsletter</summary>
+<img src="docs/validators/newsletter-validation.jpg">
+</details>
+
+<details><summary>Privacy Policy</summary>
+<img src="docs/validators/privacy-validation.jpg">
 </details>
 
 ### CSS Validation
-The [Jigsaw CSS validator](https://jigsaw.w3.org/css-validator/) PLACEHOLDER_TEXT
+The [Jigsaw CSS validator](https://jigsaw.w3.org/css-validator/) was used to validate the CSS files in the project. CSS had to be validated via direct input, as attempting to validate via URL caused parsing errors due to the included Bootstrap style sheets 
 
-<details>
-<img src="">
+<details><summary>Attempting validation via URL</summary>
+<img src="docs/validators/css-url-failure.jpg">
+</details>
+
+<details><summary>Attempting validation via direct input</summary>
+<img src="docs/validators/css-direct-input.jpg">
+</details>
+
+<details><summary>Direct input validation result</summary>
+<img src="docs/validators/css-validation.jpg">
 </details>
 
 ### JavaScript Validation
-[JSHint](https://jshint.com/) PLACEHOLDER_TEXT
+[JSHint](https://jshint.com/) was used to validate the JS files in the project.
 
-<details>
-<img src="">
+<details><summary>script.js</summary>
+<img src="docs/validators/js-toast-validation.jpg">
+</details>
+The validator shows an unused variable here, however this script was largely adapated from the toast script used in the Boutique Ado project as it was fit-for-purpose for this project. Therefore the file was unchanged in this project's implementation of toasts. 
+
+<details><summary>stripe_elements.js</summary>
+<img src="docs/validators/js-stripe-validation.jpg">
 </details>
 
 ### PEP8 Validation
-[PEP8 Online](http://pep8online.com/) PLACEHOLDER_TEXT
-
-<details><summary>settings.py</summary>
-<img src="">
-</details>
-
-
+[Code Institute's Python Linter](https://pep8ci.herokuapp.com/) was used to validate the Python files in the project.
 
 ##### Back to [top](#table-of-contents)
 
@@ -493,7 +508,7 @@ The [Jigsaw CSS validator](https://jigsaw.w3.org/css-validator/) PLACEHOLDER_TEX
 
 ## Testing
 
-PLACEHOLDER_TEXT
+Automated testing was not used for this project. Features were tested manually by proceeding through the customer journey and debugging errors or other unintended behaviours as they occurred throughout that journey.
 
 ##### Back to [top](#table-of-contents)
 
@@ -501,7 +516,9 @@ PLACEHOLDER_TEXT
 
 ## Bugs
 
-1. UNRESOLVED - 
+1. UNRESOLVED - Image sizes could not be kept consistent across the project, this was particularly noticeable on the project detail pages where some images take up huge amounts of space compared to others. It was not fixed before submission as it was deemed as less important than other fixes. 
+2. UNRESOLVED - Validation emails sent to users who signed up for a newsletter contained links which, when clicked, were meant to affect their instance of the Subscriber model by confirming their "confirmation key". However this does not work yet as there were issues with attaching the confirmation key to the Subscriber instance newly created when the user submits the form. 
+3. RESOLVED - When toasts were first implemented they did not dismiss, and were 'stuck' on the screen. After some research, a fellow student had encountered a similar issue and provided a block of JavaScript which fixed the issue. Richard Ash is incldued in the credits below for this fix. 
 
 ##### Back to [top](#table-of-contents)
 
@@ -529,10 +546,6 @@ This application has been deployed from GitHub to Heroku by following the steps:
 13. Remove DISABLE_COLLECTSTATIC from Heroku settings.
 14. Push the code to Heroku using the command "git push heroku main" from your CLI.
 
-Final steps:
-
-- PLACEHOLDER_TEXT
-
 
 ### Forking the GitHub Repository
 1. Go to the GitHub repository
@@ -547,8 +560,9 @@ Final steps:
 ## Credits
 
 - Some parts of this project includes code originally shown in Chris Zielinski's ['Boutique Ado'](https://github.com/ckz8780/boutique_ado_v1/tree/50af34fe6cacbb53181e58860f2dc21fd313950e) walkthrough project. Where relevant, changes have been made to the original code to fit the purposes of this project. However in some cases, no changes have been required in the code to achieve the required functionality. These blocks have been commented against to indicate that they have been carried across and adapated for use in this project. 
-
-
-- [TEST](https://google.com/) for ...
+- [Devsheet.com](https://devsheet.com/code-snippet/allow-or-limit-a-view-to-superuser-only-django/) helped me understand how to limit a view to a superuser only.
+- [Richard Ash's solution](https://code-institute-room.slack.com/archives/C7HS3U3AP/p1633769555244600?thread_ts=1633696310.225500&cid=C7HS3U3AP) resolved an issue I was having with toasts in this project.
+- [Ordinary Coders](https://ordinarycoders.com/blog/article/build-a-django-contact-form-with-email-backend) provided a useful tutorial which helped me to create a contact form. 
+- [Twilio.com](https://www.twilio.com/blog/build-email-newsletter-django-twilio-sendgrid) helped provide information on how one might approach implementing an email newsletter.
 
 ##### Back to [top](#table-of-contents)

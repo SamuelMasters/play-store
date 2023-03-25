@@ -94,6 +94,9 @@
                         <a href="{% url 'add_product' %}" class="text-black nav-link">Add Product</a>
                     </li>
                     {% endif %}
+                    <!-- <li class="list-inline-item">
+                        <small>Currently signed in as: {{ request.user }}</small>
+                    </li> -->
                     {% else %}
                     <li class="list-inline-item">
                         <a href="{% url 'account_login' %}" class="text-black nav-link">Login</a>
@@ -115,6 +118,11 @@
                             </div>
                         </a>
                     </li>
+                    {% if request.user.is_authenticated %}
+                    <li class="list-inline-item">
+                        <small>Currently signed in as: "{{ request.user }}"</small>
+                    </li>
+                    {% endif %}
                 </ul>
             </div>
         </div>

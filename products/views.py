@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
-from django.contrib.auth.decorators import user_passes_test
+from django.contrib.auth.decorators import user_passes_test, login_required
 from django.db.models import Q
 
 import time
@@ -91,30 +91,35 @@ def product_detail(request, product_id):
     return render(request, 'products/product_detail.html', context)
 
 
-@user_passes_test(lambda u: u.is_superuser)
+@login_required(login_url='/accounts/login/')
+@user_passes_test(lambda u: u.is_superuser, login_url='/404/')
 def add_product(request):
     """ Handles the creation of new products to the database """
-    if request.method == 'POST':
-        form = ProductForm(request.POST, request.FILES)
-        if form.is_valid():
-            product = form.save()
-            messages.success(request, 'Successfully added product!')
-            return redirect(reverse('product_detail', args=[product.id]))
+    if request.user.is_superuser:
+        if request.method == 'POST':
+            form = ProductForm(request.POST, request.FILES)
+            if form.is_valid():
+                product = form.save()
+                messages.success(request, 'Successfully added product!')
+                return redirect(reverse('product_detail', args=[product.id]))
+            else:
+                messages.error(request, 'Failed to add product, please check the \
+                                            product details and try again.')
         else:
-            messages.error(request, 'Failed to add product, please check the \
-                                        product details and try again.')
+            form = ProductForm()
+
+        template = 'products/add_product.html'
+        context = {
+            'form': form,
+        }
+
+        return render(request, template, context)
     else:
-        form = ProductForm()
-
-    template = 'products/add_product.html'
-    context = {
-        'form': form,
-    }
-
-    return render(request, template, context)
+        return
 
 
-@user_passes_test(lambda u: u.is_superuser)
+@login_required(login_url='/accounts/login/')
+@user_passes_test(lambda u: u.is_superuser, login_url='/404/')
 def edit_product(request, product_id):
     """ Handles the changing of existing product data """
     product = get_object_or_404(Product, pk=product_id)
@@ -141,7 +146,8 @@ def edit_product(request, product_id):
     return render(request, template, context)
 
 
-@user_passes_test(lambda u: u.is_superuser)
+@login_required(login_url='/accounts/login/')
+@user_passes_test(lambda u: u.is_superuser, login_url='/404/')
 def delete_product(request, product_id):
     """ Handles the deletion of products from the database """
     product = get_object_or_404(Product, pk=product_id)

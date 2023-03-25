@@ -95,27 +95,24 @@ def product_detail(request, product_id):
 @user_passes_test(lambda u: u.is_superuser, login_url='/404/')
 def add_product(request):
     """ Handles the creation of new products to the database """
-    if request.user.is_superuser:
-        if request.method == 'POST':
-            form = ProductForm(request.POST, request.FILES)
-            if form.is_valid():
-                product = form.save()
-                messages.success(request, 'Successfully added product!')
-                return redirect(reverse('product_detail', args=[product.id]))
-            else:
-                messages.error(request, 'Failed to add product, please check the \
-                                            product details and try again.')
+    if request.method == 'POST':
+        form = ProductForm(request.POST, request.FILES)
+        if form.is_valid():
+            product = form.save()
+            messages.success(request, 'Successfully added product!')
+            return redirect(reverse('product_detail', args=[product.id]))
         else:
-            form = ProductForm()
-
-        template = 'products/add_product.html'
-        context = {
-            'form': form,
-        }
-
-        return render(request, template, context)
+            messages.error(request, 'Failed to add product, please check the \
+                                        product details and try again.')
     else:
-        return
+        form = ProductForm()
+
+    template = 'products/add_product.html'
+    context = {
+        'form': form,
+    }
+
+    return render(request, template, context)
 
 
 @login_required(login_url='/accounts/login/')

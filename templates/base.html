@@ -89,9 +89,11 @@
                     <li class="list-inline-item">
                         <a href="{% url 'account_logout' %}" class="text-black nav-link">Logout</a>
                     </li>
+                    {% if request.user.is_superuser %}
                     <li class="list-inline-item">
                         <a href="{% url 'add_product' %}" class="text-black nav-link">Add Product</a>
                     </li>
+                    {% endif %}
                     {% else %}
                     <li class="list-inline-item">
                         <a href="{% url 'account_login' %}" class="text-black nav-link">Login</a>

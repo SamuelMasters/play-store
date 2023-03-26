@@ -40,6 +40,8 @@ def checkout(request):
             'county': request.POST['county'],
         }
 
+        order_form = OrderForm(form_data)
+
         if order_form.is_valid():
             order = order_form.save()
             for item_id, item_data in bag.items():
@@ -91,6 +93,7 @@ def checkout(request):
                 profile = UserProfile.objects.get(user=request.user)
                 print(f"DEBUG: profile value: {profile}")  # DEBUG
                 order_form = OrderForm(initial={
+                    'full_name': profile.default_full_name,
                     'email': request.user.email,
                     'street_address1': profile.default_street_address1,
                     'street_address2': profile.default_street_address2,
@@ -134,6 +137,7 @@ def checkout_success(request, order_number):
         if save_info:
             print(f"DEBUG: save_info block triggered...")  # DEBUG
             profile_data = {
+                'default_full_name': order.full_name,
                 'default_street_address1': order.street_address1,
                 'default_street_address2': order.street_address2,
                 'default_postcode': order.postcode,

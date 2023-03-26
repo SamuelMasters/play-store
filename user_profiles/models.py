@@ -9,6 +9,8 @@ from phonenumber_field.modelfields import PhoneNumberField
 class UserProfile(models.Model):
     """ A model to represent a user's saved information """
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    # default_full_name = models.CharField(max_length=40, null=True,
+    #                                      blank=True)
     default_phone_number = PhoneNumberField(null=True, blank=True)
     default_street_address1 = models.CharField(max_length=90, null=True,
                                                blank=True)

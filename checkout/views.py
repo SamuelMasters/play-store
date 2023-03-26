@@ -40,7 +40,6 @@ def checkout(request):
             'county': request.POST['county'],
         }
 
-        order_form = OrderForm(form_data)
         if order_form.is_valid():
             order = order_form.save()
             for item_id, item_data in bag.items():
@@ -70,10 +69,11 @@ def checkout(request):
 
     # occurs on GET request, such as load of checkout.html template
     else:
+        print(f"DEBUG: checkout view called as GET...")  # DEBUG
         bag = request.session.get('bag', {})
         if not bag:
             messages.error(request, "Your bag is empty.")
-            return redirect(reverse('products'))
+            return redirect(reverse('home'))
 
         current_bag = bag_contents(request)
         total = current_bag['total']
@@ -83,6 +83,26 @@ def checkout(request):
             amount=stripe_total,
             currency=settings.STRIPE_CURRENCY,
         )
+
+        if request.user.is_authenticated:
+            print(f"DEBUG: request.user.is_authenticated = True; attempting to retreive delivery info...")  # DEBUG
+            try:
+                print(f"DEBUG: try block running, attempting to retreive user profile...")  # DEBUG
+                profile = UserProfile.objects.get(user=request.user)
+                print(f"DEBUG: profile value: {profile}")  # DEBUG
+                order_form = OrderForm(initial={
+                    'email': request.user.email,
+                    'street_address1': profile.default_street_address1,
+                    'street_address2': profile.default_street_address2,
+                    'postcode': profile.default_postcode,
+                    'county': profile.default_county,
+                    'country': profile.default_country,
+                })
+            except Exception as e:
+                print(f"DEBUG: the following exception occured: {e}")
+                order_form = OrderForm()
+
+    if not order_form:
         order_form = OrderForm()
 
     if not stripe_secret_key:
@@ -104,6 +124,7 @@ def checkout_success(request, order_number):
     A view for rendering an order confirmation page to the user.
     """
     save_info = request.session.get('save_info')
+    print(f"DEBUG: save_info value = {save_info}")  # DEBUG
     order = get_object_or_404(Order, order_number=order_number)
     if request.user.is_authenticated:
         profile = UserProfile.objects.get(user=request.user)
@@ -111,6 +132,7 @@ def checkout_success(request, order_number):
         order.save()
 
         if save_info:
+            print(f"DEBUG: save_info block triggered...")  # DEBUG
             profile_data = {
                 'default_street_address1': order.street_address1,
                 'default_street_address2': order.street_address2,
@@ -118,10 +140,14 @@ def checkout_success(request, order_number):
                 'default_county': order.county,
                 'default_country': order.country,
             }
+            print(f"DEBUG: profile_data value: {profile_data}")  # DEBUG
             user_profile_form = UserProfileForm(profile_data, instance=profile)
+            print(f"DEBUG: user_profile_form: {user_profile_form}")  # DEBUG
 
             if user_profile_form.is_valid():
+                print(f"DEBUG: user_profile_form evaluated as valid...")  # DEBUG
                 user_profile_form.save()
+                print(f"DEBUG: user_profile_form has been saved...")  # DEBUG
 
     message = Mail(
         from_email=settings.FROM_EMAIL,

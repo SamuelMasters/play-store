@@ -225,6 +225,5 @@ STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY', '')
 STRIPE_WH_SECRET = os.getenv('STRIPE_WH_SECRET', '')
 
 # SendGrid Settings
-# FROM_EMAIL = 'samuelmastersdev@gmail.com'
 FROM_EMAIL = 'smplaystoreapp@gmail.com'
 SENDGRID_API_KEY = os.environ.get('SENDGRID_API_KEY')

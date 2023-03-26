@@ -10,6 +10,8 @@ from products.models import Product
 from user_profiles.forms import UserProfileForm
 from user_profiles.models import UserProfile
 from bag.contexts import bag_contents
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail
 
 import stripe
 import json
@@ -120,6 +122,24 @@ def checkout_success(request, order_number):
 
             if user_profile_form.is_valid():
                 user_profile_form.save()
+
+    message = Mail(
+        from_email=settings.FROM_EMAIL,
+        to_emails=order.email,
+        subject=f'Your Play-Store order {order_number} has been confirmed!',
+        html_content=f'Thank you for placing an order with us!\
+                      Your order ID is <strong>"{order_number}"</strong>.<br>\
+                      Please do not hesistate to contact us if you have \
+                      any queries.',
+    )
+    try:
+        sg = SendGridAPIClient(settings.SENDGRID_API_KEY)
+        response = sg.send(message)
+    except Exception as e:
+        print(f"ERROR: the following exception occurred when attempting \
+            to send order confirmation: {e}")
+        messages.error(request, 'There was a problem sending\
+            the confirmation email. Please contact us for assistance.')
 
     messages.success(request, f'Order successfully placed! \
         Your order number is {order_number}, and a confirmation \

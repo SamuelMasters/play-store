@@ -32,7 +32,35 @@
 
 This project, "play-store", is an eCommerce web application where users can browse video game and board game products, add them to a basket, and purchase them via Stripe payments. Users are also able to sign up to a "dummy" newsletter, and can submit contact queries. Site owners / admin have full CRUD functionality with the products listed on the site, and can add, edit, and delete products from the front-end. 
 
-### User Goals
+---
+
+## Business Model
+
+Play-Store is a B2C business (business to customer) eCommerce site specialising in the sale of video games and board games, intended for educational purposes only. It includes a mockup Facebook page, which in a real business scenario, would serve to help build brand awareness and reach, as well as SEO practises to help improve the site's visiblity on search engines such as Google. 
+
+### Marketing Strategy
+Play-Store utilises two main features as part of it's marketing strategy; a Facebook business page, and a newsletter.
+
+##### Facebook Business Page
+The Facebook business page offers an avenue for the business to more directly interact with customers on an individual basis. By having a Facebook business page, the business can provide updates to customers that might be considered 'spammy' or unnecessary if they were communicated via a newsletter or other direct email. In other words, the page allows the business a way to communicate with customers without requiring a specific reason. That said, the page can be used in that manner if required, for example if a customer comments on a post stating they had an issue or query, they can be redirected to a private message for individual customer service or their query can be answered publicly with another comment, which then demonstrates good customer service to everyone who views the page; they can see that the business engages with it's customers. 
+
+Apart from customer engagement, the page improves the site's visiblity as it can be visible to a very large audience of social media users, and it takes advantage of social media networking algorithms as well. For example, if a customer has liked the business' page, then that like can be shown to the user's friends, who in turn might share that interest and explore the page for themselves. 
+
+<details><summary>Facebook Business Mockup</summary>
+<img src="docs/readme/play-store-facebook-mockup.jpg">
+</details>
+
+##### Newsletter
+The newsletter allows the business to easily send mass communication out to customers who are more likely to take advantage of provided discounts and other promotions. Since the newsletter requires the user to opt-in, it means that those who have opted-in have specifically made the decision to allow contact between themselves and the business, which a one-time customer or browsing user is unlikely to do. The newsletter also offers a way for the business to quickly and easily send out mass communication to this section of it's customer base. One example of how the newsletter might be incentivised is by offering exclusive discount codes to subscribers, which could help build the number of newsletter subscribers as well as improve conversion rates and sales as a whole.
+
+### Search Engine Optimisation (SEO)
+The site makes use of meta tags to increase searchability, by including keywords relevant to the site's content and intended audience such as 'video games', 'games', 'store', 'gaming', and more. 
+
+It also includes the 'robots.txt' and 'sitemap.xml' files. The sitemap file is useful for SEO because it helps search engines crawl every important page on your site, and the robots.txt file tells search engines where they're not allowed to go - having this file present within the web application is viewed as a sign of quality by search engines, which in turn improves the site's SEO too. 
+
+---
+
+## User Goals
 
 - Be able to browse the site to look for products I may be interested in purchasing. 
 - Be able to easily purchase those products. 
@@ -43,8 +71,7 @@ This project, "play-store", is an eCommerce web application where users can brow
 - Be able to easily create new products to list on the store. 
 - Be able to easily edit or delete existing products from the store. 
 
-
-
+---
 
 ## User Experience
 
@@ -59,13 +86,14 @@ This project, "play-store", is an eCommerce web application where users can brow
 
 ##### Back to [top](#table-of-contents)
 
+---
 
 ## User Stories
 
 User stories were created at project start and were arranged planned out using Lucidchart. They were then copied over into Github Issues and setup on a project board with MoSCoW prioritisation labels applied. 
 
 <details><summary>User Story Planning</summary>
-<img src="docs/wireframes/play-store-user-stories.jpeg">
+<img src="docs/wireframes/play_store_user_stories.jpeg">
 </details>
 
 <details><summary>GitHub Issues</summary>
@@ -99,6 +127,7 @@ User stories were created at project start and were arranged planned out using L
 
 ##### Back to [top](#table-of-contents)
 
+---
 
 ## Design
 
@@ -140,14 +169,6 @@ Data for this project is stored is an ElephantSQL postgres database. Data models
 </details>
 
 The following models were setup for this project:
-
-#### Facebook Mockup
-
-A Facebook business page was mocked up for this project. 
-
-<details><summary>Mockup</summary>
-<img src="docs/readme/play-store-facebook-mockup.jpg">
-</details>
 
 ##### Order Model
 - This model contains information about an individual order placed successfully on site.
@@ -223,42 +244,46 @@ A Facebook business page was mocked up for this project.
 - This model represents a user's saved information.
 - It contains the following fields:
   - user (OneToOne association with User, a Django authentication model)
-  - default_phone_number
+  - default_full_name
   - default_street_address1
   - default_street_address2
   - default_postcode
   - default_county
   - default_country
 
+---
+
 ### Wireframes
 
 <details><summary>Home</summary>
-<img src="">
+<img src="docs/wireframes/home.png">
 </details>
 <details><summary>Browse</summary>
-<img src="">
+<img src="docs/wireframes/browse.png">
 </details>
 <details><summary>Product Detail</summary>
-<img src="">
+<img src="docs/wireframes/product_detail.png">
 </details>
 <details><summary>Bag</summary>
-<img src="">
+<img src="docs/wireframes/basket.png">
 </details>
 <details><summary>Checkout</summary>
-<img src="">
+<img src="docs/wireframes/checkout.png">
 </details>
 <details><summary>Contact Us</summary>
-<img src="">
+<img src="docs/wireframes/contact_us.png">
 </details>
 <details><summary>Profile</summary>
-<img src="">
+<img src="docs/wireframes/profile.png">
 </details>
 <details><summary>Model Planning</summary>
-<img src="">
+<img src="docs/wireframes/models.jpeg">
 </details>
 <details><summary>User Stories</summary>
-<img src="">
+<img src="docs/wireframes/play_store_user_stories.jpeg">
 </details>
+
+---
 
 ## Technologies Used
 
@@ -273,9 +298,9 @@ A Facebook business page was mocked up for this project.
 
 ### Libraries & Tools
 
-- [Am I Responsive]() was used to create the example image at the top of this README.
+- [Am I Responsive](https://ui.dev/amiresponsive) was used to create the example image at the top of this README.
 - [Balsamiq](https://balsamiq.com/) was used to setup visual wireframes for the website's pages.
-- [Lucidchart]() was used to create wireframes of the project's anticipated data models and user stories.
+- [Lucidchart](https://www.lucidchart.com/pages/) was used to create wireframes of the project's anticipated data models and user stories.
 - [Bootstrap](https://getbootstrap.com/) was used as a framework for the project.
 - [Django-allauth](https://django-allauth.readthedocs.io/en/latest/index.html) was used to add simple user authentication to the website.
 - [GitHub](https://github.com/) was used for version control and development hosting.
@@ -284,7 +309,6 @@ A Facebook business page was mocked up for this project.
 - [Elephant SQL](https://www.elephantsql.com/) was used to provide a postgres database to store the deployed site's data.
 - [Stripe](https://stripe.com/gb) was used to setup and handle payments made through the website.
 - [Amazon AWS](https://aws.amazon.com/) was used to store the deployed project's static files and media.
-- []() was used to .
 
 
 ##### Back to [top](#table-of-contents)
@@ -519,6 +543,7 @@ Automated testing was not used for this project. Features were tested manually b
 1. UNRESOLVED - Image sizes could not be kept consistent across the project, this was particularly noticeable on the project detail pages where some images take up huge amounts of space compared to others. It was not fixed before submission as it was deemed as less important than other fixes. 
 2. UNRESOLVED - Validation emails sent to users who signed up for a newsletter contained links which, when clicked, were meant to affect their instance of the Subscriber model by confirming their "confirmation key". However this does not work yet as there were issues with attaching the confirmation key to the Subscriber instance newly created when the user submits the form. 
 3. RESOLVED - When toasts were first implemented they did not dismiss, and were 'stuck' on the screen. After some research, a fellow student had encountered a similar issue and provided a block of JavaScript which fixed the issue. Richard Ash is incldued in the credits below for this fix. 
+4. RESOLVED - At one point a redirect loop was identified when authorised non-superusers attempted to access restricted URLs which were protected with a decorator which tested for superuser permissions. When this happened the page would crash and and browser error message indicating a redirect loop was reported. To resolve this, additional decorators were added to the views that returned these pages in a 'stacking' method. The new decorator first checks for general authentication and specifically redirects anonymous users to the login page, and the original decorator then also checks that the user is a superuser, and redirects them to the site's error page if they are not. 
 
 ##### Back to [top](#table-of-contents)
 
@@ -541,8 +566,7 @@ This application has been deployed from GitHub to Heroku by following the steps:
 9.  Ensure that your settings.py file is connected to your new Postgres database from Heroku.
 10. In settings.py, check that Debug = False.
 11. Under the "ALLOWED_HOSTS" variable in settings.py, make sure that 'localhost' and the deployed Heroku root url are included. 
-12. Go to Settings in your Heroku and set the environment variables in the Config Vars
-    ![Heroku config vars]()
+12. Go to Settings in your Heroku and set the environment variables in the Config Vars.
 13. Remove DISABLE_COLLECTSTATIC from Heroku settings.
 14. Push the code to Heroku using the command "git push heroku main" from your CLI.
 

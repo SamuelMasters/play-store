@@ -1,174 +1,227 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'products/css/products.css' %}">
+{% endblock %}
 
 {% block content %}
-<div class="row">
-    <div class="col-12 col-md-8 col-lg-8 dev-border">
-        <div class="image-container">
-            {% if product.image_main %}
-            <img class="img-fluid" src="{{ product.image_main.url }}" alt="{{ product.name }} box art">
-            {% else %}
-            <img class="img-fluid" src="{% static '../media/noimage.png' %}" alt="no image placeholder">
-            {% endif %}
-        </div>
-    </div>
-    <div class="col-12 col-md-4 col-lg-4 dev-border">
-        <p>{{ product.description }}</p>
-        <form action="{% url 'add_to_bag' product.id %}" class="form" method="POST">
-            {% csrf_token %}
-            <div class="form-row">
-                <div class="col-12">
-                    <p class="mt-3">
-                        <strong>Quantity:</strong>
-                    </p>
-                    <div class="form-group w-50">
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <button class="decrement-qty btn btn-black rounded-0" data-item_id="{{ product.id }}"
-                                    id="decrement-qty_{{ product.id }}">
-                                    <span class="icon">
-                                        <i class="fas fa-minus"></i>
-                                    </span>
-                                </button>
-                            </div>
-                            <input type="number" class="form-control qty_input" name="quantity" value="1" min="1"
-                                max="99" data-item_id="{{ product.id }}" id="id_qty_{{ product.id }}">
-                            <div class="input-group-append">
-                                <button class="increment-qty btn btn-black rounded-0" data-item_id="{{ product.id }}"
-                                    id="increment-qty_{{ product.id }}">
-                                    <span class="icon">
-                                        <i class="fas fa-plus"></i>
-                                    </span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12">
-                    <a href="{% url 'products' %}" class="btn btn-outline-black rounded-0 mt-5">
-                        <span class="icon">
-                            <i class="fas fa-chevron-left"></i>
-                        </span>
-                        <span class="text-uppercase">Browse Products</span>
-                    </a>
-                    <input type="submit" value="Add to Bag" class="btn btn-black text-uppercase rounded-0 mt-5">
-                </div>
-                <input type="hidden" name="redirect_url" value="{{ request.path }}">
+<div class="container pb-5" id="detail-container">
+    <div class="row">
+        <div class="col-12 col-md-8 col-lg-8 dev-border">
+            <div class="image-container">
+                {% if product.image_main %}
+                <img class="img-fluid" src="{{ product.image_main.url }}" alt="{{ product.name }} box art">
+                {% else %}
+                <img class="img-fluid" src="{% static '../media/noimage.png' %}" alt="no image placeholder">
+                {% endif %}
             </div>
-        </form>
-    </div>
-
-    <div class="col-12 dev-border">
-        <h2>{{ product.name }}</h2>
-        <h3>£{{ product.price }}</h3>
-        {% if product.category %}
-        <a>
-            <i class="fas fa-tag mr-1"></i>{{ product.category.friendly_name }}
-        </a>
-        {% endif %}
-
-        {% if product.rating %}
-        <p>average product rating here</p>
-        {% endif %}
-
-        {% if request.user.is_superuser %}
-        <small class="ml-3">
-            <a href="{% url 'edit_product' product.id %}">Edit</a>
-            <a class="text-danger" href="{% url 'delete_product' product.id %}">Delete</a>
-        </small>
-        {% endif %}
-        <hr>
-
-        <div class="description-wrapper">
+        </div>
+        <div class="col-12 col-md-4 col-lg-4 dev-border">
             <p>{{ product.description }}</p>
-        </div>
-
-        <!-- Product Reviews -->
-        <div class="review-wrapper">
-            <h3>Reviews</h3>
-            {% for review in product.reviews.all %}
-            <div class="review-block">
-                <p>
-                    <strong>"{{ review.review_title }}"</strong> | <strong>Rating: </strong>{{ review.rating }} / 5 |
-                    <strong>Date: </strong>{{ review.date|date:"y-m-d" }}
-                </p>
-                <p>
-                    {{ review.review_body }}
-                    <em> - {{ review.reviewer }}</em>
-                    {% if review.reviewer == request.user %}
-                    <small class="ml-3">
-                        <a class="text-danger" href="{% url 'delete_review' review.id %}">Delete</a>
-                    </small>
-                    {% endif %}
-                </p>
-                {% empty %}
-                <p>
-                    <strong>No reviews yet...</strong>
-                </p>
-            </div>
-            {% endfor %}
-        </div>
-
-        <div class="new-review-wrapper">
-            {% if request.user.is_authenticated %}
-            <form action="{% url 'product_detail' product.id %}" method="POST">
+            <form action="{% url 'add_to_bag' product.id %}" class="form" method="POST">
                 {% csrf_token %}
-
-                <div class="field">
-                    <label>Rating</label>
-
-                    <div class="control">
-                        <div class="select">
-                            <select name="rating">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3" selected>3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                            </select>
+                <div class="form-row">
+                    <div class="col-12">
+                        <p class="mt-3">
+                            <strong>Quantity:</strong>
+                        </p>
+                        <div class="form-group w-50">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <button class="decrement-qty btn btn-black rounded-0"
+                                        data-item_id="{{ product.id }}" id="decrement-qty_{{ product.id }}">
+                                        <span class="icon">
+                                            <i class="fas fa-minus"></i>
+                                        </span>
+                                    </button>
+                                </div>
+                                <input type="number" class="form-control qty_input" name="quantity" value="1" min="1"
+                                    max="99" data-item_id="{{ product.id }}" id="id_qty_{{ product.id }}">
+                                <div class="input-group-append">
+                                    <button class="increment-qty btn btn-black rounded-0"
+                                        data-item_id="{{ product.id }}" id="increment-qty_{{ product.id }}">
+                                        <span class="icon">
+                                            <i class="fas fa-plus"></i>
+                                        </span>
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="field">
-                    <label>Title</label>
-
-                    <div class="control">
-                        <input type="text" name="review_title">
+                    <div class="col-12">
+                        <a href="{% url 'products' %}" class="btn btn-outline-black rounded-0 mt-5">
+                            <span class="icon">
+                                <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="text-uppercase">Browse Products</span>
+                        </a>
+                        <input type="submit" value="Add to Bag" class="btn btn-black text-uppercase rounded-0 mt-5">
                     </div>
+                    <input type="hidden" name="redirect_url" value="{{ request.path }}">
                 </div>
-
-                <div class="field">
-                    <label>Content</label>
-
-                    <div class="control">
-                        <textarea name="review_body" class="textarea" id="" cols="70" rows="10"></textarea>
-                    </div>
-                </div>
-
-                <div class="field">
-                    <div class="control">
-                        <button class="button is-success">Submit</button>
-                    </div>
-                </div>
-
             </form>
-            {% else %}
-            <p>Please sign in if you wish to leave a review.</p>
-            {% endif %}
         </div>
-        <!-- end of reviews -->
-        <div id="returns-policy">
-            <h3>Returns Policy</h3>
 
-            <p>Please note our returns policy is 30 days starting from the day your order was received.</p>
+        <div class="col-12 dev-border">
+            <h2>{{ product.name }}</h2>
+            <h3>£{{ product.price }}</h3>
+            {% if product.category %}
+            <a>
+                <i class="fas fa-tag mr-1"></i> {{ product.category.friendly_name }}
+            </a>
+            {% endif %}
+
+            {% if product.rating %}
+            <p>average product rating here</p>
+            {% endif %}
+
+            {% if request.user.is_superuser %}
+            <small class="ml-3">
+                <a href="{% url 'edit_product' product.id %}">Edit</a>
+                <a class="text-danger" href="{% url 'delete_product' product.id %}">Delete</a>
+            </small>
+            {% endif %}
+
+            <div class="description-wrapper">
+                <p>{{ product.description }}</p>
+            </div>
+            <hr>
+
+            <!-- Product Reviews -->
+            <div class="review-wrapper">
+                <h3>Reviews</h3>
+                {% for review in product.reviews.all %}
+                <div class="review-block">
+                    <p>
+                        <strong>"{{ review.review_title }}"</strong> | <strong>Rating: </strong>{{ review.rating }} / 5
+                        |
+                        <strong>Date: </strong>{{ review.date|date:"y-m-d" }}
+                    </p>
+                    <p>
+                        {{ review.review_body }}
+                        <em> - {{ review.reviewer }}</em>
+                        {% if review.reviewer == request.user %}
+                        <small class="ml-3">
+                            <a class="text-danger" href="{% url 'delete_review' review.id %}">Delete</a>
+                        </small>
+                        {% endif %}
+                    </p>
+                    {% empty %}
+                    <p>
+                        <strong>No reviews yet...</strong>
+                    </p>
+                </div>
+                {% endfor %}
+            </div>
+
+            <div class="new-review-wrapper">
+                {% if request.user.is_authenticated %}
+                <form action="{% url 'product_detail' product.id %}" method="POST">
+                    {% csrf_token %}
+
+                    <div class="field">
+                        <label>Rating</label>
+
+                        <div class="control">
+                            <div class="select">
+                                <select name="rating">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3" selected>3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label>Title</label>
+
+                        <div class="control">
+                            <input type="text" name="review_title">
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label>Content</label>
+
+                        <div class="control">
+                            <textarea name="review_body" class="textarea" id="" cols="70" rows="10"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <div class="control">
+                            <button class="button is-success">Submit</button>
+                        </div>
+                    </div>
+
+                </form>
+                {% else %}
+                <p>Please sign in if you wish to leave a review.</p>
+                {% endif %}
+            </div>
+            <!-- end of reviews -->
+            <hr>
+            <div id="returns-policy">
+                <h3>Returns Policy</h3>
+                <p>Last updated: April 01, 2023</p>
+                <h5>Returns</h5>
+                <p>
+                    All returns must be postmarked with seven (7) days of the purchase date. All returned
+                    items must be in new and unused condition, with all original tags and labels attached.
+                </p>
+                <h5>Returns Process</h5>
+                <p>
+                    To return an item, place the item securely in its original packaging and include your
+                    proof of purchase, then mail your return to the following address:
+                </p>
+                <p>
+                    Play Store<br>
+                    Attn: Returns<br>
+                    Unit 1, Fictional Park<br>
+                    Guildford, Surrey GU1 1AA<br>
+                    United Kingdom<br>
+                </p>
+                <p>
+                    Please note, you will be responsible for all return shipping charges. We strongly recommend
+                    that you use a trackable method to mail your return.
+                </p>
+                <h5>Refunds</h5>
+                <p>
+                    After receiving your return and inspecting the condition of your item, we will process your return.
+                    Please allow at least seven (7) days from the receipt of your item to process your return. Refunds
+                    may take 1-2 billing cycles to appear on your statement, depending on your credit provider. We will
+                    notify you by email when your return has been processed.
+                </p>
+                <h5>Exceptions</h5>
+                <p>
+                    For defective or damaged products, please contact us at the contact details below to arrange a
+                    refund
+                    or an exchange.
+                </p>
+                <h5>Questions</h5>
+                <p>
+                    If you have any questions concerning our returns policy, please contact us at:
+                </p>
+                <p>
+                    smplaystoreapp@gmail.com
+                </p>
+                <p>This returns policy was created using <a
+                        href="https://termly.io/products/refund-return-policy-generator/" target="_blank">Termly's
+                        Return and Refund Policy Generator.</a></p>
+            </div>
         </div>
     </div>
-    {% endblock %}
-    <br><br>
+</div>
+{% endblock %}
+<br><br>
 
-    {% block postloadjs %}
-    {{ block.super }}
-    {% include 'products/includes/quantity_input_script.html' %}
-    {% endblock %}
+
+
+{% block postloadjs %}
+{{ block.super }}
+{% include 'products/includes/quantity_input_script.html' %}
+{% endblock %}

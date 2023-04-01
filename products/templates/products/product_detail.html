@@ -18,7 +18,7 @@
             </div>
         </div>
         <div class="col-12 col-md-4 col-lg-4 dev-border">
-            <p>{{ product.description }}</p>
+            <p>{{ product.description|truncatewords:20 }}</p>
             <form action="{% url 'add_to_bag' product.id %}" class="form" method="POST">
                 {% csrf_token %}
                 <div class="form-row">
@@ -148,7 +148,7 @@
                         <label>Content</label>
 
                         <div class="control">
-                            <textarea name="review_body" class="textarea" id="" cols="70" rows="10"></textarea>
+                            <textarea name="review_body" class="textarea" id="" cols="40" rows="10"></textarea>
                         </div>
                     </div>
 
@@ -165,6 +165,8 @@
             </div>
             <!-- end of reviews -->
             <hr>
+
+            <!-- start of returns policy -->
             <div id="returns-policy">
                 <h3>Returns Policy</h3>
                 <p>Last updated: April 01, 2023</p>
@@ -213,6 +215,7 @@
                         href="https://termly.io/products/refund-return-policy-generator/" target="_blank">Termly's
                         Return and Refund Policy Generator.</a></p>
             </div>
+            <!-- end of returns policy -->
         </div>
     </div>
 </div>

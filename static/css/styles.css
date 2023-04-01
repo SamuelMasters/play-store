@@ -28,6 +28,10 @@ header {
     color: #000 !important;
 }
 
+#home-page-image {
+    width: 25%;
+}
+
 .platform-selector {
     height: 25%;
     position: relative;

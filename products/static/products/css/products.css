@@ -2,6 +2,10 @@
     padding-bottom: 15%;
 }
 
+.image-container {
+    width: 50%;
+}
+
 #detail-container {
     max-width: 98%;
 }

@@ -1,6 +1,7 @@
 .order-history {
     max-height: 416px;
     overflow-y: auto;
+    margin-bottom: 80px;
 }
 
 #id_default_country,

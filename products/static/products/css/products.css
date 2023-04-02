@@ -7,11 +7,15 @@
 }
 
 .form-row .form-group {
-    min-width: 30%!important;
+    min-width: 60%!important;
 }
 
 #detail-container {
     max-width: 98%;
+}
+
+#edit-form {
+    margin-bottom: 25%;
 }
 
 /* Media Queries */

@@ -8,6 +8,10 @@
   border-radius: 5px;
 }
 
+#confirmation-redirect-option {
+  padding-bottom: 20%;
+}
+
 #payment-form .form-control,
 #card-element {
   color: #000;

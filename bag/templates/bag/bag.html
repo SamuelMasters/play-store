@@ -40,7 +40,7 @@
                             <td class="py-3">
                                 <p class="my-0">£{{ item.product.price }}</p>
                             </td>
-                            <td class="py-3 w-25">
+                            <td class="py-3 w-50">
                                 <form action="{% url 'edit_bag' item.item_id %}" method="POST" class="form update-form">
                                     {% csrf_token %}
                                     <div class="form-group">
@@ -86,12 +86,12 @@
 
                         <tr>
                             <td colspan="5" class="text-right">
-                                <a href="{% url 'products' %}" class="btn btn-outline-black rounded-0 btn-lg">
+                                <a href="{% url 'products' %}" class="btn btn-outline-black rounded-0 btn-lg m-1">
                                     <span class="icon">
                                         <i class="fas fa-chevron-left"></i>
                                     </span>
                                     <span class="text-uppercase">Browse Products</span>
-                                    <a href="{% url 'checkout' %}" class="btn btn-black rounded-0 btn-lg">
+                                    <a href="{% url 'checkout' %}" class="btn btn-black rounded-0 btn-lg m-1">
                                         <span class="text-uppercase">Secure Checkout</span>
                                         <span class="icon">
                                             <i class="fas fa-lock"></i>

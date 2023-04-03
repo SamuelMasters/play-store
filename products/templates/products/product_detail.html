@@ -13,7 +13,7 @@
                 {% if product.image_main %}
                 <img class="img-fluid" src="{{ product.image_main.url }}" alt="{{ product.name }} box art">
                 {% else %}
-                <img class="img-fluid" src="https://play-store-samuel-masters.s3.eu-west-2.amazonaws.com/media/noimage.png" alt="no image placeholder"> <!-- is this line causing the 400 error when NOT adding an image to new product on deployed site?? -->
+                <img class="img-fluid" src="https://play-store-samuel-masters.s3.eu-west-2.amazonaws.com/media/noimage.png" alt="no image placeholder">
                 {% endif %}
             </div>
         </div>

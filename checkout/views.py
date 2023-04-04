@@ -27,7 +27,6 @@ def checkout(request):
     stripe_secret_key = settings.STRIPE_SECRET_KEY
 
     if request.method == 'POST':
-        print("DEBUG: checkout view called as POST request")
         bag = request.session.get('bag', {})
 
         form_data = {
@@ -71,7 +70,6 @@ def checkout(request):
 
     # occurs on GET request, such as load of checkout.html template
     else:
-        print(f"DEBUG: checkout view called as GET...")  # DEBUG
         bag = request.session.get('bag', {})
         if not bag:
             messages.error(request, "Your bag is empty.")
@@ -87,11 +85,8 @@ def checkout(request):
         )
 
         if request.user.is_authenticated:
-            print(f"DEBUG: request.user.is_authenticated = True; attempting to retreive delivery info...")  # DEBUG
             try:
-                print(f"DEBUG: try block running, attempting to retreive user profile...")  # DEBUG
                 profile = UserProfile.objects.get(user=request.user)
-                print(f"DEBUG: profile value: {profile}")  # DEBUG
                 order_form = OrderForm(initial={
                     'full_name': profile.default_full_name,
                     'email': request.user.email,
@@ -102,7 +97,7 @@ def checkout(request):
                     'country': profile.default_country,
                 })
             except Exception as e:
-                print(f"DEBUG: the following exception occured: {e}")
+                print(f"ERROR: the following exception occured: {e}")
                 order_form = OrderForm()
 
     if not order_form:
@@ -127,7 +122,6 @@ def checkout_success(request, order_number):
     A view for rendering an order confirmation page to the user.
     """
     save_info = request.session.get('save_info')
-    print(f"DEBUG: save_info value = {save_info}")  # DEBUG
     order = get_object_or_404(Order, order_number=order_number)
     if request.user.is_authenticated:
         profile = UserProfile.objects.get(user=request.user)
@@ -135,7 +129,6 @@ def checkout_success(request, order_number):
         order.save()
 
         if save_info:
-            print(f"DEBUG: save_info block triggered...")  # DEBUG
             profile_data = {
                 'default_full_name': order.full_name,
                 'default_street_address1': order.street_address1,
@@ -144,14 +137,10 @@ def checkout_success(request, order_number):
                 'default_county': order.county,
                 'default_country': order.country,
             }
-            print(f"DEBUG: profile_data value: {profile_data}")  # DEBUG
             user_profile_form = UserProfileForm(profile_data, instance=profile)
-            print(f"DEBUG: user_profile_form: {user_profile_form}")  # DEBUG
 
             if user_profile_form.is_valid():
-                print(f"DEBUG: user_profile_form evaluated as valid...")  # DEBUG
                 user_profile_form.save()
-                print(f"DEBUG: user_profile_form has been saved...")  # DEBUG
 
     message = Mail(
         from_email=settings.FROM_EMAIL,

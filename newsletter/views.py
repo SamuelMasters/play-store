@@ -39,11 +39,16 @@ def handle_newsletter_signup(request):
                 from_email=settings.FROM_EMAIL,
                 to_emails=form_data['email'],
                 subject='Play Store Newsletter Confirmation',
-                html_content='Thanks for signing up to the Play.com \
-                                newsletter! Please finish your signup by \
-                                clicking <a href="{}/confirm/?email={}&confirmation_key={}">here</a> to confirm your registration.'.format(request.build_absolute_uri('/confirm/'),
-                                                                                                                                           form_data['email'],
-                                                                                                                                           form_data['confirmation_key']))
+                html_content='Thanks \
+                    for signing up to the Play.com newsletter! Please finish \
+                    your signup by clicking \
+                    <a href="{}/confirm/?email={}&confirmation_key={}">\
+                    here</a>\
+                     to confirm your \
+                    registration.'
+                        .format(request.build_absolute_uri('/confirm/'),
+                                form_data['email'],
+                                form_data['confirmation_key']))
 
             try:
                 sg = SendGridAPIClient(settings.SENDGRID_API_KEY)

@@ -185,4 +185,11 @@ header {
     .platform-selector {
         height: 60px;
     }
+    .custom-toast {
+        width: 90%;
+        margin-left: 3%;
+    }
+    #bag-container {
+        font-size: 0.85rem;
+    }
 }

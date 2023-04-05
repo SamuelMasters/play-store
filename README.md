@@ -478,7 +478,6 @@ The [W3C Validator](https://validator.w3.org/nu/) was used to validate the HTML 
 <details><summary>User Profile</summary>
 <img src="docs/validators/user-profile-validation.jpg">
 </details>
-There was an unresolved issue whilst validating the user profile page. It is believed to be caused by an authentication issue, as only authenticated users can render this page, and the validator had no way of passing as an authenticated user.
 
 <details><summary>Add Product</summary>
 <img src="docs/validators/add-product-validation.jpg">
@@ -498,6 +497,8 @@ There was an unresolved issue whilst validating the user profile page. It is bel
 
 ### CSS Validation
 The [Jigsaw CSS validator](https://jigsaw.w3.org/css-validator/) was used to validate the CSS files in the project. CSS had to be validated via direct input, as attempting to validate via URL caused parsing errors due to the included Bootstrap style sheets 
+
+**!!!SCRAP AND REWRITE THIS!!!**
 
 <details><summary>Attempting validation via URL</summary>
 <img src="docs/validators/css-url-failure.jpg">
@@ -524,7 +525,161 @@ The validator shows an unused variable here, however this script was largely ada
 </details>
 
 ### PEP8 Validation
-[Code Institute's Python Linter](https://pep8ci.herokuapp.com/) was used to validate the Python files in the project.
+[Code Institute's Python Linter](https://pep8ci.herokuapp.com/) was used to validate the Python files in the project. Screenshots of the results of each relevant file - that is, files which had code written into them and were actively modified and utilised - are shown below. Results are broken apart into each Django app used within the project. 
+
+#### Bag
+<details><summary>urls.py</summary>
+<img src="docs/validators/bag - urls.py.jpg">
+</details>
+<details><summary>views.py</summary>
+<img src="docs/validators/bag - views.py.jpg">
+</details>
+<details><summary>contexts.py</summary>
+<img src="docs/validators/bag - contexts.py.jpg">
+</details>
+
+---
+
+#### Checkout
+<details><summary>admin.py</summary>
+<img src="docs/validators/checkout - admin.py.jpg">
+</details>
+<details><summary>models.py</summary>
+<img src="docs/validators/checkout - models.py.jpg">
+</details>
+<details><summary>urls.py</summary>
+<img src="docs/validators/checkout - urls.py.jpg">
+</details>
+<details><summary>views.py</summary>
+<img src="docs/validators/checkout - views.py.jpg">
+</details>
+<details><summary>forms.py</summary>
+<img src="docs/validators/checkout - forms.py.jpg">
+</details>
+<details><summary>webhook_handler.py</summary>
+<img src="docs/validators/checkout - webhook_handler.py.jpg">
+</details>
+<details><summary>webhooks.py</summary>
+<img src="docs/validators/checkout - webhooks.py.jpg">
+</details>
+<details><summary>signals.py</summary>
+<img src="docs/validators/checkout - signals.py.jpg">
+</details>
+
+---
+
+#### Contact
+<details><summary>admin.py</summary>
+<img src="docs/validators/contact - admin.py.jpg">
+</details>
+<details><summary>models.py</summary>
+<img src="docs/validators/contact - models.py.jpg">
+</details>
+<details><summary>urls.py</summary>
+<img src="docs/validators/contact - urls.py.jpg">
+</details>
+<details><summary>views.py</summary>
+<img src="docs/validators/contact - views.py.jpg">
+</details>
+<details><summary>forms.py</summary>
+<img src="docs/validators/contact - forms.py.jpg">
+</details>
+
+---
+
+#### Home
+<details><summary>urls.py</summary>
+<img src="docs/validators/home - urls.py.jpg">
+</details>
+<details><summary>views.py</summary>
+<img src="docs/validators/home - views.py.jpg">
+</details>
+
+---
+
+#### Newsletter
+<details><summary>admin.py</summary>
+<img src="docs/validators/newsletter - admin.py.jpg">
+</details>
+<details><summary>models.py</summary>
+<img src="docs/validators/newsletter - models.py.jpg">
+</details>
+<details><summary>urls.py</summary>
+<img src="docs/validators/newsletter - urls.py.jpg">
+</details>
+<details><summary>views.py</summary>
+<img src="docs/validators/newsletter - views.py.jpg">
+</details>
+<details><summary>forms.py</summary>
+<img src="docs/validators/newsletter - forms.py.jpg">
+</details>
+
+---
+
+#### Play_Store (core project app)
+<details><summary>urls.py</summary>
+<img src="docs/validators/play_store - urls.py.jpg">
+</details>
+<details><summary>views.py</summary>
+<img src="docs/validators/play_store - views.py.jpg">
+</details>
+<details><summary>settings.py</summary>
+<img src="docs/validators/play_store - settings.py.jpg">
+</details>
+
+---
+
+#### Reviews
+<details><summary>admin.py</summary>
+<img src="docs/validators/reviews - admin.py.jpg">
+</details>
+<details><summary>models.py</summary>
+<img src="docs/validators/reviews - models.py.jpg">
+</details>
+<details><summary>urls.py</summary>
+<img src="docs/validators/reviews - urls.py.jpg">
+</details>
+<details><summary>views.py</summary>
+<img src="docs/validators/reviews - views.py.jpg">
+</details>
+<details><summary>forms.py</summary>
+<img src="docs/validators/reviews - forms.py.jpg">
+</details>
+
+---
+
+#### User_Profiles
+<details><summary>models.py</summary>
+<img src="docs/validators/user_profiles - models.py.jpg">
+</details>
+<details><summary>urls.py</summary>
+<img src="docs/validators/user_profiles - urls.py.jpg">
+</details>
+<details><summary>views.py</summary>
+<img src="docs/validators/user_profiles - views.py.jpg">
+</details>
+<details><summary>forms.py</summary>
+<img src="docs/validators/user_profiles - forms.py.jpg">
+</details>
+
+---
+
+#### Products
+<details><summary>admin.py</summary>
+<img src="docs/validators/products - admin.py.jpg">
+</details>
+<details><summary>models.py</summary>
+<img src="docs/validators/products - models.py.jpg">
+</details>
+<details><summary>urls.py</summary>
+<img src="docs/validators/products - urls.py.jpg">
+</details>
+<details><summary>views.py</summary>
+<img src="docs/validators/products - views.py.jpg">
+</details>
+<details><summary>forms.py</summary>
+<img src="docs/validators/products - forms.py.jpg">
+</details>
 
 ##### Back to [top](#table-of-contents)
 
@@ -532,7 +687,53 @@ The validator shows an unused variable here, however this script was largely ada
 
 ## Testing
 
-Automated testing was not used for this project. Features were tested manually by proceeding through the customer journey and debugging errors or other unintended behaviours as they occurred throughout that journey.
+Automated testing was not used for this project. Features were tested manually by proceeding through the customer journey and debugging errors or other unintended behaviours as they occurred throughout that journey. 
+
+The approach adopted for this project's manual testing was to visit each page in turn and document each potential user interaction. The interaction was documented, along with the expected behaviour from that interaction. When each expected behaviour was confirmed, it was marked with a 'Passed' tag. When tests did not intially pass, the code base was reviewed to determine the cause and changes were made to enable the test to pass. This tracking was initially done within a regular Excel document, a screenshot of which is visible below: 
+
+<details><summary>Manual Testing Checklist</summary>
+<img src="docs/readme/manual_testing_checklist.jpg">
+</details>
+
+A full list of the manual tests carried out are also detailed here: 
+
+Page | Feature | Test  | Expected Result | Result |
+|----| --------| ----- | --------------- | :-----------: |
+| Home (index.html) | Play.com Logo (Home)  | Clicking the "Play.com" logo | Returns user to homepage | Passed |
+| Home (index.html) | Search bar  | Using the search box in header | Entering a search term returns logical, relevant results | Passed |
+| Home (index.html) | Search bar  | Using the search box in header with no query | An error message is returned, and all products are shown | Passed |
+| Home (index.html) | Header Navigation  | Clicking navigation links | Directs user to page as indicated by the clicked link | Passed |
+| Home (index.html) | Platform Selection  | Clicking any of the "platform" selectors | Directs user to a list of products filtered by the selected platform | Passed |
+| Home (index.html) | Platform Selection  | Clicking the "all products" selector | Directs user to an unfiltered list of all products stored in database | Passed |
+| Home (index.html) | Add Product  | Clicking the "Add Product" button on navbar, as an admin | Add Product should only be visible to admin users, clicking it redirects admin user to Add Product page | Passed |
+| Home (index.html) | Add Product  | Access the "Add Product" page via direct URL input, as non-admin / anonymous | Attempting to access via direct URL input should redirect to 404 / sign-in page | Passed |
+| Products (products.html) | Editing Existing Products | Access the "Edit Product" page by clicking "Edit" button, as as admin | Edit button should only be visible to admin users, clicking it redirects admin user to Edit Product page | Passed |
+| Products (products.html) | Editing Existing Products | Access the "Edit Product" page by clicking "Edit" button, as non-admin / anonymous | Attempting to access via direct URL input should redirect to 404 / sign-in page | Passed |
+| Products (products.html) | Deleting Existing Products | Attempt to trigger "delete_product" view by clicking "Delete" button: As an admin | Deletes the product from the database and redirects back to products page | Passed |
+| Products (products.html) | Deleting Existing Products | Attempt to trigger "delete_product" view: As an non-admin user | Redirects user to 404 page and does not delete product from database | Passed |
+| Products (products.html) | Deleting Existing Products | Attempt to trigger "delete_product" view: As an anonymous user | Redirects user to login page and does not delete product from database | Passed |
+| Product Detail (product_detail.html) | Product Review | Create and leave a review on product detail page | Create a new review, refresh the page with new review visible | Passed |
+| Product Detail (product_detail.html) | Product Review | Delete review: as review author | Redirects user to home page, deletes the review and show a message to the user | Passed |
+| Product Detail (product_detail.html) | Product Review | Delete review: as not the review author, authorised or anonymous | Redirect user to home page and display an error message | Passed |
+| Product Detail (product_detail.html) | Add to Bag | Clicking the "Add to Bag" button | Add the specified quantity of the item to the user's bag | Passed |
+| Product Detail (product_detail.html) | Browse Products | Clicking the "< Browse Products" button | Returns the user to the unfiltered products page, showing all products | Passed |
+| Add Product (add_product.html) | Adding New Products | Filling out new product form, with image, and submitting | Adds new product to the database and redirects user to product page, with image visible | Passed |
+| Add Product (add_product.html) | Adding New Products | Filling out new product form, with no image, and submitting | Adds new product to the database and redirects user to product page, with placeholder image visible | Passed |
+| Edit Product (edit_product.html) | Editing Existing Products | Submitting edit product form | Updates existing entry in products database | Passed |
+| Bag (bag.html) | View Items in Bag | Clicking the bag icon with the current monetary total | Redirect the user to the bag page, and shows them a summary of items in their bag including quantity, price and subtotal | Passed |
+| Bag (bag.html) | Edit Items in Bag | Change the quantity number and click "Update" | Changes the quantity of the product within the bag | Passed |
+| Bag (bag.html) | Edit Items in Bag | Click the "Remove" option under the product quantity | Removes the product from the contents of the bag | Passed |
+| Checkout (checkout.html) | Payments | Filling out checkout form with card details and clicking "Complete Order" | Redirects user to checkout success page (if payment succeeds) and creates instance of order in database | Passed |
+| Checkout (checkout.html) | Payments | Attempt to submit checkout form with insufficient / missing details | Form validation displays a message and prevents form submission | Passed |
+| Checkout (checkout.html) | Payments | Attempting to submit checkout form but payment is declined by Stripe | Error message displayed to user indicating the nature of the error | Passed |
+| Checkout Success (checkout_success.html) | Payments | Redirection after successfully placing an order at checkout | Displays order summary and a message to the user indicating that order confirmation was sent | Passed |
+| Newsletter (newsletter.html) | Newsletter Signup | Entering and submitting an email address for newsletter signup | Displays a success message to the user and sends an email to their address and adds the address to Subscriber database | Passed |
+| Newsletter (newsletter.html) | Newsletter Signup | Attempting to submit newsletter signup without entering email address | Form validation displays a message and prevents form submission | Passed |
+| User Profile (user_profile.html) | Save Address Details | Filling in address details on user profile page and submitting | Update the user's saved address information for autofill on checkout and display success message | Passed |
+| User Profile (user_profile.html) | User Profile Page | Attempting to access user profile page as anonymous user, via direct URL input | Displays an error message to the anonymous user and redirects them to the home page | Passed |
+| User Profile (user_profile.html) | Order History | Accessing the user profile page | Show an order history for all orders associated with the user profile | Passed |
+| Contact Us (contact.html) | Submitting Query | Filling out the query form and submitting | Add a ContactQuery instance to the database and display success message to user | Passed |
+
 
 ##### Back to [top](#table-of-contents)
 
@@ -540,10 +741,11 @@ Automated testing was not used for this project. Features were tested manually b
 
 ## Bugs
 
-1. UNRESOLVED - Image sizes could not be kept consistent across the project, this was particularly noticeable on the project detail pages where some images take up huge amounts of space compared to others. It was not fixed before submission as it was deemed as less important than other fixes. 
-2. UNRESOLVED - Validation emails sent to users who signed up for a newsletter contained links which, when clicked, were meant to affect their instance of the Subscriber model by confirming their "confirmation key". However this does not work yet as there were issues with attaching the confirmation key to the Subscriber instance newly created when the user submits the form. 
-3. RESOLVED - When toasts were first implemented they did not dismiss, and were 'stuck' on the screen. After some research, a fellow student had encountered a similar issue and provided a block of JavaScript which fixed the issue. Richard Ash is incldued in the credits below for this fix. 
-4. RESOLVED - At one point a redirect loop was identified when authorised non-superusers attempted to access restricted URLs which were protected with a decorator which tested for superuser permissions. When this happened the page would crash and and browser error message indicating a redirect loop was reported. To resolve this, additional decorators were added to the views that returned these pages in a 'stacking' method. The new decorator first checks for general authentication and specifically redirects anonymous users to the login page, and the original decorator then also checks that the user is a superuser, and redirects them to the site's error page if they are not. 
+1. UNRESOLVED - Validation emails sent to users who signed up for a newsletter contained links which, when clicked, were meant to affect their instance of the Subscriber model by confirming their "confirmation key". However this does not work yet as there were issues with attaching the confirmation key to the Subscriber instance newly created when the user submits the form. 
+2. RESOLVED - When toasts were first implemented they did not dismiss, and were 'stuck' on the screen. After some research, a fellow student had encountered a similar issue and provided a block of JavaScript which fixed the issue. Richard Ash is incldued in the credits below for this fix. 
+3. RESOLVED - At one point a redirect loop was identified when authorised non-superusers attempted to access restricted URLs which were protected with a decorator which tested for superuser permissions. When this happened the page would crash and and browser error message indicating a redirect loop was reported. To resolve this, additional decorators were added to the views that returned these pages in a 'stacking' method. The new decorator first checks for general authentication and specifically redirects anonymous users to the login page, and the original decorator then also checks that the user is a superuser, and redirects them to the site's error page if they are not. 
+4. RESOLVED - Saved address information was not populating on the checkout form, even when it already exists on a user's profile. This was resolved by adding an additional code block to retrieve this information and by removing a field in the UserProfile model which had turned out to be obsolete. These changes made in the checkout view enabled the autofill functionality to work as intended. 
+5. RESOLVED - When attempting to create an item without adding an image, the deployed project returned a 500 error when attempting to load the new product's detail page. The issue was believed to be due to a misconfiguration of the static reference for the relevant placeholder image stored within Amazon Web Services' S3 bucket. To resolve this, the reference used on the image tag was replaced with an absolute URL pointing to the exact placeholder image intended. This change meant that the page rendered correctly, with the placeholder showing as intended. 
 
 ##### Back to [top](#table-of-contents)
 
@@ -587,6 +789,7 @@ This application has been deployed from GitHub to Heroku by following the steps:
 - [Devsheet.com](https://devsheet.com/code-snippet/allow-or-limit-a-view-to-superuser-only-django/) helped me understand how to limit a view to a superuser only.
 - [Richard Ash's solution](https://code-institute-room.slack.com/archives/C7HS3U3AP/p1633769555244600?thread_ts=1633696310.225500&cid=C7HS3U3AP) resolved an issue I was having with toasts in this project.
 - [Ordinary Coders](https://ordinarycoders.com/blog/article/build-a-django-contact-form-with-email-backend) provided a useful tutorial which helped me to create a contact form. 
-- [Twilio.com](https://www.twilio.com/blog/build-email-newsletter-django-twilio-sendgrid) helped provide information on how one might approach implementing an email newsletter.
+- [Twilio.com](https://www.twilio.com/blog/build-email-newsletter-django-twilio-sendgrid) was used in the project to handle the sending of emails for order confirmations, newsletter signups and new user email validation. Additionally, information provided by Twilio helped provide insights on how one might configure an email newsletter.
+- [Termly](https://termly.io/) was used to generate a returns policy that was then used on the product detail pages.
 
 ##### Back to [top](#table-of-contents)

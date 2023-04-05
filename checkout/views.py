@@ -100,7 +100,7 @@ def checkout(request):
                 print(f"ERROR: the following exception occured: {e}")
                 order_form = OrderForm()
 
-    if not order_form:
+    if not request.user.is_authenticated:
         order_form = OrderForm()
 
     if not stripe_secret_key:

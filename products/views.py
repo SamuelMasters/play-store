@@ -46,10 +46,14 @@ def display_products(request):
 
 
 def product_detail(request, product_id):
-    """ A view to show users the specific detail page for a given product """
+    """
+    A view to show users the specific detail page for a given product and
+    handle the submission of reviews on the page
+    """
     product = get_object_or_404(Product, pk=product_id)
 
     if request.method == 'POST' and request.user.is_authenticated:
+        # Handles the submission product reviews based on form data
         form_data = {
             'product': product_id,
             'review_title': request.POST['review_title'],
@@ -81,7 +85,7 @@ def product_detail(request, product_id):
             messages.error(request, 'It looks like there was a problem\
                                      with your review. Please try again\
                                      later.')
-            print(f"DEBUG: An exception occurred: {e}")
+            print(f"ERROR: An exception occurred: {e}")
 
     form = ReviewForm()
     context = {

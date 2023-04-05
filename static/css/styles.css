@@ -51,6 +51,10 @@ header {
     text-decoration: none;
 }
 
+.platform-link:hover {
+    color: #1a1919;
+}
+
 .product-card {
     margin-top: 20px;
     margin-bottom: 105px;
@@ -58,8 +62,6 @@ header {
 
 .card-img-container {
     overflow: hidden;
-    /* aspect-ratio: 16/9;
-    width: 100%; */
 }
 
 .btn-black {
@@ -111,11 +113,11 @@ header {
 }
 
 #board-container {
-    background-color: #720768;
+    background-color: #960d88;
 }
 
 #all-product-selector {
-    background-color: #930104;
+    background-color: #d66163;
 }
 
 #template-header {
@@ -130,6 +132,10 @@ header {
 
 #footer-list {
     margin-bottom: 0;
+}
+
+#education-disclaimer {
+    color: black;
 }
 
 /* toasts */

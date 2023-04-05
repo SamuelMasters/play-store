@@ -452,47 +452,63 @@ The following models were setup for this project:
 
 The [W3C Validator](https://validator.w3.org/nu/) was used to validate the HTML files used in this project.
 <details><summary>Home</summary>
-<img src="docs/validators/home-validation.jpg">
+<img src="docs/validators/home - index.html.jpg">
 </details>
 
 <details><summary>Products</summary>
-<img src="docs/validators/products-validation.jpg">
+<img src="docs/validators/products - products.html.jpg">
 </details>
 
 <details><summary>Product Details</summary>
-<img src="docs/validators/product-detail-validation.jpg">
+<img src="docs/validators/products - product_detail.html.jpg">
 </details>
 
 <details><summary>Bag</summary>
-<img src="docs/validators/bag-validation.jpg">
+<img src="docs/validators/bag - bag.html.jpg">
 </details>
 
 <details><summary>Checkout</summary>
-<img src="docs/validators/checkout-validation.jpg">
+<img src="docs/validators/checkout - checkout.html.jpg">
 </details>
 
 <details><summary>Checkout Success</summary>
-<img src="docs/validators/checkout-success-validation.jpg">
+<img src="docs/validators/checkout - checkout_success.html.jpg">
 </details>
 
-<details><summary>User Profile</summary>
-<img src="docs/validators/user-profile-validation.jpg">
+<details><summary>User Profile (one error was returned here; the 'placeholder' attribute had to be iterated on alongside other form elements for the form to render correctly, therefore this error was acknowledged and accepted to not fix for the sake of project functionality)</summary>
+<img src="docs/validators/user_profiles - profile.html.jpg">
 </details>
 
 <details><summary>Add Product</summary>
-<img src="docs/validators/add-product-validation.jpg">
+<img src="docs/validators/products - add_product.html.jpg">
+</details>
+
+<details><summary>Edit Product</summary>
+<img src="docs/validators/products - edit_product.html.jpg">
 </details>
 
 <details><summary>Contact Us</summary>
-<img src="docs/validators/contact-validation.jpg">
+<img src="docs/validators/contact - contact.html.jpg">
 </details>
 
 <details><summary>Newsletter</summary>
-<img src="docs/validators/newsletter-validation.jpg">
+<img src="docs/validators/newsletter - newsletter.html.jpg">
 </details>
 
 <details><summary>Privacy Policy</summary>
-<img src="docs/validators/privacy-validation.jpg">
+<img src="docs/validators/home - privacy_policy.html.jpg">
+</details>
+
+<details><summary>Sign-in</summary>
+<img src="docs/validators/allauth - login.html.jpg">
+</details>
+
+<details><summary>Sign-out</summary>
+<img src="docs/validators/allauth - logout.html.jpg">
+</details>
+
+<details><summary>Sign-up</summary>
+<img src="docs/validators/allauth - signup.html.jpg">
 </details>
 
 ### CSS Validation
@@ -774,9 +790,9 @@ This application has been deployed from GitHub to Heroku by following the steps:
 
 
 ### Forking the GitHub Repository
-1. Go to the GitHub repository
-2. Click on the fork icon in top right corner
-3. You will then have am identical copy of that repository.
+1. Go to the GitHub repository.
+2. Click on the fork icon in top right corner.
+3. You will then have an identical copy of that repository.
    
 
 ##### Back to [top](#table-of-contents)

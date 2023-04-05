@@ -512,20 +512,18 @@ The [W3C Validator](https://validator.w3.org/nu/) was used to validate the HTML 
 </details>
 
 ### CSS Validation
-The [Jigsaw CSS validator](https://jigsaw.w3.org/css-validator/) was used to validate the CSS files in the project. CSS had to be validated via direct input, as attempting to validate via URL caused parsing errors due to the included Bootstrap style sheets 
+The [Jigsaw CSS validator](https://jigsaw.w3.org/css-validator/) was used to validate the CSS files in the project. CSS had to be validated via direct input, as attempting to validate via URL caused parsing errors due to the included Bootstrap style sheets. All three style sheets utilised in the project passed without errors.
 
-**!!!SCRAP AND REWRITE THIS!!!**
-
-<details><summary>Attempting validation via URL</summary>
-<img src="docs/validators/css-url-failure.jpg">
+<details><summary>styles.css</summary>
+<img src="docs/validators/play_store - styles.css.jpg">
 </details>
 
-<details><summary>Attempting validation via direct input</summary>
-<img src="docs/validators/css-direct-input.jpg">
+<details><summary>products.css</summary>
+<img src="docs/validators/products - products.css.jpg">
 </details>
 
-<details><summary>Direct input validation result</summary>
-<img src="docs/validators/css-validation.jpg">
+<details><summary>checkout.css</summary>
+<img src="docs/validators/checkout - checkout.css.jpg">
 </details>
 
 ### JavaScript Validation

@@ -1,3 +1,4 @@
+/* script originally created within Boutique Ado walkthough project */ 
 let countrySelected = $('#id_default_country').val();
 if (!countrySelected) {
     $('#id_default_country').css('color', '#AAB7C4');

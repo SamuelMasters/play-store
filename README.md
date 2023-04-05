@@ -530,13 +530,19 @@ The [Jigsaw CSS validator](https://jigsaw.w3.org/css-validator/) was used to val
 [JSHint](https://jshint.com/) was used to validate the JS files in the project.
 
 <details><summary>script.js</summary>
-<img src="docs/validators/js-toast-validation.jpg">
+<img src="docs/validators/play_store - script.js.jpg">
 </details>
-The validator shows an unused variable here, however this script was largely adapated from the toast script used in the Boutique Ado project as it was fit-for-purpose for this project. Therefore the file was unchanged in this project's implementation of toasts. 
+The validator shows an unused variable here, however this script was largely adapated from the toast script used in the Boutique Ado project as it was fit-for-purpose for this project. Therefore the file was left unchanged in this project's implementation of toasts. 
 
 <details><summary>stripe_elements.js</summary>
-<img src="docs/validators/js-stripe-validation.jpg">
+<img src="docs/validators/checkout - stripe_elements.js.jpg">
 </details>
+This script was copied from official Stripe documentation, and is used for handling the formatting of Stripe's card elements and payment submission.
+
+<details><summary>country_script.js</summary>
+<img src="docs/validators/user_profiles - country_script.js.jpg">
+</details>
+This script was originally shown in the Boutique Ado walkthough project, and is used to dynamically colour the 'country' select input field in the user profile form. 
 
 ### PEP8 Validation
 [Code Institute's Python Linter](https://pep8ci.herokuapp.com/) was used to validate the Python files in the project. Screenshots of the results of each relevant file - that is, files which had code written into them and were actively modified and utilised - are shown below. Results are broken apart into each Django app used within the project. 

@@ -138,6 +138,10 @@ header {
     color: black;
 }
 
+#bag-quantity-selector {
+    max-width: 30%;
+}
+
 /* toasts */
 .message-container {
     position: fixed;

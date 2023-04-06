@@ -40,7 +40,7 @@
                             <td class="py-3">
                                 <p class="my-0">£{{ item.product.price }}</p>
                             </td>
-                            <td class="py-3 w-50">
+                            <td class="py-3 w-50" id="bag-quantity-selector">
                                 <form action="{% url 'edit_bag' item.item_id %}" method="POST" class="form update-form">
                                     {% csrf_token %}
                                     <div class="form-group">

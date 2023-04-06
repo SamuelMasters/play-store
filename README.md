@@ -24,13 +24,13 @@
   - [Validation](#validation)
   - [Testing](#testing)
   - [Bugs](#bugs)
-  - [Configuration](#configuration)
-    - [Heroku Deployment](#heroku-deployment)
+  - [Deployment](#deployment)
+    - [Heroku](#heroku)
   - [Credits](#credits)
 
 ### About
 
-This project, "play-store", is an eCommerce web application where users can browse video game and board game products, add them to a basket, and purchase them via Stripe payments. Users are also able to sign up to a "dummy" newsletter, and can submit contact queries. Site owners / admin have full CRUD functionality with the products listed on the site, and can add, edit, and delete products from the front-end. 
+This project, "play-store", is an eCommerce web application where users can browse video game and board game products, add them to a basket, and purchase them via Stripe payments. Users are also able to sign up to a "dummy" newsletter, and can submit contact queries, as well as store their address details in a user profile for an expedited checkout process. Site owners / admin have full CRUD functionality with the products listed on the site, and can add, edit, and delete products from the front-end. 
 
 ---
 
@@ -56,7 +56,7 @@ The newsletter allows the business to easily send mass communication out to cust
 ### Search Engine Optimisation (SEO)
 The site makes use of meta tags to increase searchability, by including keywords relevant to the site's content and intended audience such as 'video games', 'games', 'store', 'gaming', and more. 
 
-It also includes the 'robots.txt' and 'sitemap.xml' files. The sitemap file is useful for SEO because it helps search engines crawl every important page on your site, and the robots.txt file tells search engines where they're not allowed to go - having this file present within the web application is viewed as a sign of quality by search engines, which in turn improves the site's SEO too. 
+It also includes the 'robots.txt' and 'sitemap.xml' files. The sitemap file is useful for SEO because it helps search engines crawl every important page on your site, and the robots.txt file tells search engines where they're not allowed to go - having this file present within the web application is viewed as a sign of quality by search engines, which in turn improves the site's SEO as well. 
 
 ---
 
@@ -139,6 +139,10 @@ The colour scheme uses light, mild colouring to help provide contrast against th
 
 Google Fonts was used to provide the font for the website. [Barlow](https://fonts.google.com/specimen/Barlow?preview.text=Your%20one%20stop%20shop%20for%20the%20best%20deals.&preview.text_type=custom) was chosen for it's simplicity and clean lines.
 
+### Responsiveness
+
+The project uses a combination of custom media queries and Bootstrap classes to make the project responsive and viewable on devices from 370px wide and up. 
+
 ### Structure
 
 #### Website Pages
@@ -148,9 +152,9 @@ The website uses different templates / pages to comprise it's structure.
 The top of each page features a simple navbar showing the site's "Play.com" logo (which also acts as a home button), along with dynamic authentication links which change depending on whether or not the user is logged in. Also included are links to a profile page, which shows an authenticated user their saved delivery information (if they have any) as well as a basic order history which they can interact with to view past order confirmations. Finally, a bag icon is included which dynamically changes to show the current total value of items a user has in their bag, and clicking this icon leads a user towards checkout. 
 
 The bottom of each page features a simple footer with multiple links. 
-- "Contact Us" takes the user to a page where they can fill in a form to send a general query to the site admin. 
+- "Contact Us" takes the user to a page where they can fill in a form to send a general query to the site admin (a 'ContactQuery' database object is created here). 
 - "Privacy Policy" takes the user to a page where the application's privacy policy is detailed in full.
-- "Newsletter" takes the user to a page where they can enter their email address to signup to a newsletter (an real email is sent upon submitting here).
+- "Newsletter" takes the user to a page where they can enter their email address to signup to a newsletter (a real email message is sent upon submitting here).
 - "Facebook" is a dummy social media link which opens Facebook's home page in another tab, but in a real eCommerce application, this would point to the site's business page.
 
 - The website consists of the following sections:
@@ -323,7 +327,7 @@ The following models were setup for this project:
   - If the user is authenticated:
       - My Profile, leads the user to their profile page
       - Logout, leads the user to an authentication page where they can sign out
-      - Add Product (visible to authenicated users but only allows superusers), leads superusers to a page where they can create new products from a form
+      - Add Product (visible to admin users only), leads admin users to a page where they can create new products from a form
       - Shopping bag icon, leads the user to a bag summary page which then itself leads to checkout
   - If the user is not authenticated:
       - Login, leads the user to an authentication page where they can sign in
@@ -332,8 +336,8 @@ The following models were setup for this project:
 
 
 ### Home
-- This is the front-page of the site. It contains links to filtered product lists which the user can browse. It was originally intended to have a front-page image with a carousel, however this could not be implemented before submission. 
-- Clicking the platform selectors bring the user to a page with a list of products pertaining to the platform they selected. 
+- This is the front-page of the site. It contains links to product lists which the user can browse. It was also originally intended to have a front-page image with a carousel, however the decision was made to replace this with a simple controller graphic instead. 
+- Clicking the platform selectors bring the user to a page with a list of products pertaining to the platform they selected, and selecting the 'All Products' selector brings them to a full, unfiltered list of products. 
 
 <details><summary>Example</summary>
 <img src="docs/readme/home.jpg">
@@ -348,10 +352,10 @@ The following models were setup for this project:
 </details>
 
 ### Product Detail
-- This page displays a specific product in more detail. It includes space for some marketing copy to describe the product, as well as a space for user reviews further down and a brief section about the returns policy.
+- This page displays a specific product in more detail. It includes space for some marketing copy to describe the product, as well as a space for user reviews further down and a section containing the returns policy.
 
 <details><summary>Example</summary>
-<img src="docs/readme/products.jpg">
+<img src="docs/readme/product_detail.jpg">
 </details>
 
 ### Bag
@@ -372,21 +376,21 @@ The following models were setup for this project:
 - This page shows a user their order confirmation after successfully checking out.
 
 <details><summary>Example</summary>
-<img src="docs/readme/checkout-success.jpg">
+<img src="docs/readme/checkout_success.jpg">
 </details>
 
 ### User Profile
 - This page shows an authenticated user their saved delivery details and order history.
 
 <details><summary>Example</summary>
-<img src="docs/readme/user-profile.jpg">
+<img src="docs/readme/user_profile.jpg">
 </details>
 
 ### Add Product
-- This page shows an authenticated superuser a form which they can fill in to add new products to the database.
+- This page shows an authenticated admin a form which they can fill in to add new products to the database. The "Edit Product" page shares an identical template style but is accessed via a different URL.
 
 <details><summary>Example</summary>
-<img src="docs/readme/add-product.jpg">
+<img src="docs/readme/add_product.jpg">
 </details>
 
 ### Contact Us
@@ -444,6 +448,11 @@ The following models were setup for this project:
 <img src="docs/readme/message-info.jpg">
 </details>
 
+<details>
+<summary>Error Message</summary>
+<img src="docs/readme/message-error.jpg">
+</details>
+
 ##### Back to [top](#table-of-contents)
 
 ---
@@ -475,7 +484,7 @@ The [W3C Validator](https://validator.w3.org/nu/) was used to validate the HTML 
 <img src="docs/validators/checkout - checkout_success.html.jpg">
 </details>
 
-<details><summary>User Profile (one error was returned here; the 'placeholder' attribute had to be iterated on alongside other form elements for the form to render correctly, therefore this error was acknowledged and accepted to not fix for the sake of project functionality)</summary>
+<details><summary>User Profile (one error was returned here; the 'placeholder' attribute had to be iterated on alongside other form elements for the form to render correctly, therefore this error was acknowledged and accepted to not fix for the sake of project functionality. Additionally, this was validated via direct input rather than a URL, as the URL requires authentication to access which was not possible from the validator.)</summary>
 <img src="docs/validators/user_profiles - profile.html.jpg">
 </details>
 
@@ -511,6 +520,8 @@ The [W3C Validator](https://validator.w3.org/nu/) was used to validate the HTML 
 <img src="docs/validators/allauth - signup.html.jpg">
 </details>
 
+---
+
 ### CSS Validation
 The [Jigsaw CSS validator](https://jigsaw.w3.org/css-validator/) was used to validate the CSS files in the project. CSS had to be validated via direct input, as attempting to validate via URL caused parsing errors due to the included Bootstrap style sheets. All three style sheets utilised in the project passed without errors.
 
@@ -525,6 +536,8 @@ The [Jigsaw CSS validator](https://jigsaw.w3.org/css-validator/) was used to val
 <details><summary>checkout.css</summary>
 <img src="docs/validators/checkout - checkout.css.jpg">
 </details>
+
+---
 
 ### JavaScript Validation
 [JSHint](https://jshint.com/) was used to validate the JS files in the project.
@@ -543,6 +556,8 @@ This script was copied from official Stripe documentation, and is used for handl
 <img src="docs/validators/user_profiles - country_script.js.jpg">
 </details>
 This script was originally shown in the Boutique Ado walkthough project, and is used to dynamically colour the 'country' select input field in the user profile form. 
+
+---
 
 ### PEP8 Validation
 [Code Institute's Python Linter](https://pep8ci.herokuapp.com/) was used to validate the Python files in the project. Screenshots of the results of each relevant file - that is, files which had code written into them and were actively modified and utilised - are shown below. Results are broken apart into each Django app used within the project. 
@@ -761,9 +776,9 @@ Page | Feature | Test  | Expected Result | Result |
 
 ## Bugs
 
-1. UNRESOLVED - Validation emails sent to users who signed up for a newsletter contained links which, when clicked, were meant to affect their instance of the Subscriber model by confirming their "confirmation key". However this does not work yet as there were issues with attaching the confirmation key to the Subscriber instance newly created when the user submits the form. 
-2. RESOLVED - When toasts were first implemented they did not dismiss, and were 'stuck' on the screen. After some research, a fellow student had encountered a similar issue and provided a block of JavaScript which fixed the issue. Richard Ash is incldued in the credits below for this fix. 
-3. RESOLVED - At one point a redirect loop was identified when authorised non-superusers attempted to access restricted URLs which were protected with a decorator which tested for superuser permissions. When this happened the page would crash and and browser error message indicating a redirect loop was reported. To resolve this, additional decorators were added to the views that returned these pages in a 'stacking' method. The new decorator first checks for general authentication and specifically redirects anonymous users to the login page, and the original decorator then also checks that the user is a superuser, and redirects them to the site's error page if they are not. 
+1. UNRESOLVED - Validation emails sent to users who signed up for a newsletter contained links which, when clicked, were meant to affect their instance of the Subscriber model by confirming their "confirmation key" and changing their "Consent" variable to True. However this does not work yet as there were issues with attaching the confirmation key to the Subscriber instance newly created when the user submits the form. 
+2. RESOLVED - When toasts were first implemented they did not dismiss, and were 'stuck' on the screen. After some research, a fellow student had encountered a similar issue and provided a block of JavaScript which fixed the issue. Richard Ash is included in the credits below for this fix. 
+3. RESOLVED - At one point a redirect loop was identified when authorised non-superusers attempted to access restricted URLs which were protected with a decorator which tested for superuser permissions. When this happened the page would crash and a browser error message indicating a redirect loop was reported. To resolve this, additional decorators were added to the views that returned these pages, in a 'stacking' method. The new decorator first checks for general authentication and specifically redirects anonymous users to the login page, and the original decorator then also checks that the user is a superuser, and redirects them to the site's error page if they are not. 
 4. RESOLVED - Saved address information was not populating on the checkout form, even when it already exists on a user's profile. This was resolved by adding an additional code block to retrieve this information and by removing a field in the UserProfile model which had turned out to be obsolete. These changes made in the checkout view enabled the autofill functionality to work as intended. 
 5. RESOLVED - When attempting to create an item without adding an image, the deployed project returned a 500 error when attempting to load the new product's detail page. The issue was believed to be due to a misconfiguration of the static reference for the relevant placeholder image stored within Amazon Web Services' S3 bucket. To resolve this, the reference used on the image tag was replaced with an absolute URL pointing to the exact placeholder image intended. This change meant that the page rendered correctly, with the placeholder showing as intended. 
 
@@ -771,9 +786,19 @@ Page | Feature | Test  | Expected Result | Result |
 
 ---
 
-## Configuration
+## Future Improvements
 
-### Heroku Deployment
+The deployed project has been tested for functionality, however there are some parts that could be improved in future deployments. Some examples are below: 
+
+1. Improved admin controls - allow admin users to have edit/delete control over non-admin users' content, on the front-end. For example, allow admins to edit or delete user reviews on the product detail page itself, rather than having to navigate to the back-end to do  this. 
+2. More defensive programming - add defensive features in to help prevent accidental functions triggering from mistaken user input. For example, a modal added when an admin selects the "Delete" option on a product, asking them to confirm their input, could help to prevent accidental deletions from the database. 
+3. Improved product imagery - replace product images with standardised 'box art', with consistent sizing, such that every image shares the same size and is fully visible in product thumbnails. 
+
+---
+
+## Deployment
+
+### Heroku
 This application has been deployed from GitHub to Heroku by following the steps:
 
 1. Create or log in to your account at [heroku.com](https://heroku.com)
